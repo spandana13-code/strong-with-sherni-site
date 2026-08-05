@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PCOS, Postpartum &amp; Fertility Coaching — Strong With Sherni</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#2D322C; --cream:#FAF9F3; --white:#FFFFFF;
+    --maroon:#7B0237; --teal:#1F4037; --coral:#FF833B; --mustard:#9C9C1E;
+    --taupe:#6B6459; --line:rgba(45,50,44,0.13);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{ font-family:'Work Sans', sans-serif; background:var(--white); color:var(--ink); }
+  h1,h2,h3{ font-family:'Cormorant Garamond', serif; }
+  a{ text-decoration:none; color:inherit; }
+  .eyebrow{ font-size:12px; letter-spacing:0.16em; text-transform:uppercase; font-weight:600; color:var(--coral); }
+
+  nav{ display:flex; align-items:center; justify-content:space-between; padding:20px 6vw; border-bottom:1px solid var(--line); position:sticky; top:0; background:rgba(255,255,255,0.92); backdrop-filter:blur(6px); z-index:50; }
+  .logo{ display:flex; align-items:center; gap:12px; font-family:'Cormorant Garamond',serif; font-weight:600; font-size:21px; }
+  .logo img{ height:38px; width:38px; object-fit:contain; }
+  .nav-links{ display:flex; gap:30px; font-size:13.5px; font-weight:500; }
+  .nav-links a{ opacity:0.75; }
+  .nav-links a.active, .nav-links a:hover{ opacity:1; color:var(--teal); }
+  .nav-cta{ background:var(--maroon); color:var(--white); padding:10px 22px; border-radius:24px; font-size:13px; font-weight:600; }
+  @media (max-width:960px){ .nav-links{ display:none; } }
+
+  .page-hero{ background:var(--cream); text-align:center; padding:80px 8vw 0; }
+  .page-hero h1{ font-size:clamp(32px,4.2vw,48px); font-weight:600; margin-top:14px; line-height:1.15; }
+  .page-hero p{ margin-top:16px; color:var(--taupe); max-width:600px; margin-left:auto; margin-right:auto; font-size:16px; line-height:1.6; }
+  .hero-photo-strip{ margin-top:44px; aspect-ratio:21/7; max-width:1100px; margin-left:auto; margin-right:auto; border-radius:14px; overflow:hidden; background:var(--white); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; transform:translateY(50%); }
+  .hero-photo-strip .photo-placeholder{ color:var(--taupe); font-size:13px; font-weight:600; }
+
+  section{ padding:130px 6vw 90px; }
+  section + section{ padding-top:90px; }
+  .section-head{ max-width:640px; margin:0 auto 48px; text-align:center; }
+  .section-head h2{ font-size:clamp(28px,3.4vw,38px); font-weight:600; margin-top:10px; }
+  .section-head p{ margin-top:12px; color:var(--taupe); font-size:15.5px; line-height:1.6; }
+
+  .help-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; max-width:1100px; margin:0 auto; }
+  .help-tile{ background:var(--cream); border-radius:12px; padding:26px 20px; text-align:center; }
+  .help-icon{ width:44px; height:44px; border-radius:50%; background:var(--teal); color:var(--white); display:flex; align-items:center; justify-content:center; margin:0 auto 14px; font-size:18px; }
+  .help-tile h4{ font-size:15px; font-weight:700; margin-bottom:4px; }
+  .help-tile p{ font-size:12.5px; color:var(--taupe); line-height:1.4; }
+  @media (max-width:860px){ .help-grid{ grid-template-columns:repeat(2,1fr); } }
+
+  .disclaimer{ max-width:700px; margin:40px auto 0; background:var(--white); border:1px solid var(--line); border-left:3px solid var(--coral); border-radius:8px; padding:18px 22px; font-size:13px; color:var(--taupe); line-height:1.6; }
+
+  .badges-row{ display:flex; align-items:center; justify-content:center; gap:36px; flex-wrap:wrap; padding:10px 6vw 0; }
+  .badges-row span{ font-weight:700; color:var(--taupe); font-size:13.5px; }
+
+  .price-wrap{ max-width:480px; margin:0 auto; }
+  .price-card{ background:var(--white); border:2px solid var(--maroon); border-radius:18px; padding:40px 34px; box-shadow:0 14px 34px rgba(123,2,55,0.1); text-align:center; }
+  .price-card h3{ font-size:24px; font-weight:600; }
+  .price-card .duration{ color:var(--taupe); font-size:13.5px; margin-top:4px; }
+  .price-card .amount{ font-family:'Cormorant Garamond',serif; font-size:44px; font-weight:700; color:var(--maroon); margin:20px 0 4px; }
+  .price-card .amount span{ font-family:'Work Sans',sans-serif; font-size:13px; font-weight:500; color:var(--taupe); }
+  .feature-list{ list-style:none; margin:26px 0; text-align:left; }
+  .feature-list li{ display:flex; align-items:flex-start; gap:12px; font-size:13.5px; padding:9px 0; line-height:1.4; }
+  .icon-wrap{ flex-shrink:0; width:22px; height:22px; border-radius:50%; background:rgba(46,125,50,0.12); display:flex; align-items:center; justify-content:center; margin-top:-1px; }
+  .icon{ width:12px; height:12px; color:#2E7D32; }
+  .plan-cta{ display:block; text-align:center; background:var(--maroon); color:var(--white); padding:15px; border-radius:26px; font-size:13.5px; font-weight:700; margin-top:10px; }
+
+  footer{ background:var(--white); color:var(--ink); padding:64px 6vw 30px; border-top:1px solid var(--line); text-align:center; }
+  footer .logo{ justify-content:center; margin-bottom:10px; }
+  .foot-bottom{ margin-top:20px; font-size:12px; color:var(--taupe); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><img src="logo.png" alt="Strong With Sherni logo">Strong With Sherni</div>
+  <div class="nav-links">
+    <a href="index.html#services">Services</a>
+    <a href="individual-coaching.html">Individual Coaching</a>
+    <a href="buddy-program.html">Buddy Program</a>
+    <a href="#" class="active">PCOS Coaching</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+  <a href="index.html#contact" class="nav-cta">Book a Call</a>
+</nav>
+
+<section class="page-hero">
+  <span class="eyebrow">Hormone &amp; Women's Health</span>
+  <h1>PCOS, Postpartum &amp; Fertility Coaching</h1>
+  <p>A focused coaching program for women navigating PCOS, postpartum recovery, or fertility-related lifestyle changes — built around your cycle, your body, and what you're actually going through.</p>
+  <div class="hero-photo-strip">
+    <div class="photo-placeholder">Coaching photo (women's health focused)</div>
+  </div>
+</section>
+
+<section>
+  <div class="section-head">
+    <span class="eyebrow">What We Help With</span>
+    <h2>Support for what you're actually dealing with</h2>
+  </div>
+  <div class="help-grid">
+    <div class="help-tile">
+      <div class="help-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+      </div>
+      <h4>Irregular Cycles</h4>
+      <p>Lifestyle &amp; nutrition support for cycle regularity</p>
+    </div>
+    <div class="help-tile">
+      <div class="help-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8 6 5 10 5 14a7 7 0 0014 0c0-4-3-8-7-12z"/></svg>
+      </div>
+      <h4>Insulin Resistance</h4>
+      <p>Nutrition strategies to support insulin sensitivity</p>
+    </div>
+    <div class="help-tile">
+      <div class="help-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h16M4 12a8 8 0 0116 0M4 12a8 8 0 008 8"/></svg>
+      </div>
+      <h4>Weight Management</h4>
+      <p>Sustainable fat loss without extreme restriction</p>
+    </div>
+    <div class="help-tile">
+      <div class="help-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-8-4.5-8-11a5 5 0 0110-1 5 5 0 0110 1c0 6.5-8 11-8 11z"/></svg>
+      </div>
+      <h4>Hair &amp; Skin Changes</h4>
+      <p>Hormone-supportive nutrition to ease symptoms</p>
+    </div>
+    <div class="help-tile">
+      <div class="help-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg>
+      </div>
+      <h4>Low Energy &amp; Fatigue</h4>
+      <p>Nutrition &amp; habit coaching to rebuild energy</p>
+    </div>
+    <div class="help-tile">
+      <div class="help-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M12 6v6l4 2"/></svg>
+      </div>
+      <h4>Postpartum Recovery</h4>
+      <p>Gentle, phased programming after childbirth</p>
+    </div>
+    <div class="help-tile">
+      <div class="help-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 00-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z"/></svg>
+      </div>
+      <h4>Fertility-Supportive Habits</h4>
+      <p>Lifestyle coaching alongside your fertility journey</p>
+    </div>
+    <div class="help-tile">
+      <div class="help-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+      </div>
+      <h4>Habit &amp; Stress Coaching</h4>
+      <p>Building routines that actually stick, long-term</p>
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    <b>A note on what this program is:</b> this is lifestyle and nutrition coaching designed to support you alongside your medical care — it is not a substitute for diagnosis or treatment from your doctor or gynaecologist. Please continue working with your physician; we'll work alongside them, not in place of them.
+  </div>
+</section>
+
+<section style="padding-top:20px;">
+  <div class="section-head">
+    <span class="eyebrow">Credentials</span>
+    <h2>Trained &amp; Certified</h2>
+  </div>
+  <div class="badges-row">
+    <span>ACE CERTIFIED</span>
+    <span>NASM · CERTIFIED CNC</span>
+    <span>INFS</span>
+    <span>PREHAB</span>
+  </div>
+</section>
+
+<section style="background:var(--cream);">
+  <div class="section-head">
+    <span class="eyebrow">The Program</span>
+    <h2>One Focused Program</h2>
+    <p>No tiers to choose between — just one complete program built for hormone and cycle-related coaching.</p>
+  </div>
+  <div class="price-wrap">
+    <div class="price-card">
+      <h3>PCOS, Postpartum &amp; Fertility Program</h3>
+      <div class="duration">4 Month Program</div>
+      <div class="amount">₹35,999 <span>total</span></div>
+      <ul class="feature-list">
+        <li><span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span> Personalised nutrition plan for hormone &amp; insulin support</li>
+        <li><span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span> Cycle tracking &amp; symptom pattern guidance</li>
+        <li><span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span> Postpartum-specific recovery programming (where applicable)</li>
+        <li><span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span> Fertility-supportive lifestyle coaching</li>
+        <li><span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span> Weekly check-ins</li>
+        <li><span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span> Habit &amp; stress-management coaching</li>
+        <li><span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span> Direct WhatsApp support</li>
+        <li><span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span> 2 dedicated coaching calls across the program</li>
+      </ul>
+      <a href="index.html#contact" class="plan-cta">Book Your Consultation</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="logo"><img src="logo.png" alt="Strong With Sherni logo">Strong With Sherni</div>
+  <div class="foot-bottom">© 2026 Strong With Sherni. All rights reserved. · Bengaluru, India</div>
+</footer>
+
+</body>
+</html>
