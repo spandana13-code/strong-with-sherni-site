@@ -107,16 +107,15 @@
   .philosophy h2{ font-size:clamp(28px,4.2vw,44px); font-weight:500; line-height:1.3; color:var(--cream); font-style:italic; max-width:900px; margin:18px auto 0; }
   .philosophy .btn-solid{ margin-top:32px; display:inline-block; background:var(--coral); }
 
-  .transform-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
-  .transform-card{ background:var(--cream); border-radius:10px; overflow:hidden; border:1px solid var(--line); }
-  .ba-row{ display:grid; grid-template-columns:1fr 1fr; }
-  .ba-row div{ position:relative; aspect-ratio:1/1.1; overflow:hidden; }
-  .ba-row img{ width:100%; height:100%; object-fit:cover; }
-  .ba-label{ position:absolute; bottom:8px; left:8px; background:rgba(255,255,255,0.9); font-size:10px; font-weight:700; padding:3px 8px; border-radius:12px; text-transform:uppercase; }
-  .transform-quote{ padding:20px 22px; }
-  .transform-quote q{ font-family:'Cormorant Garamond',serif; font-style:italic; font-size:17px; display:block; quotes:none; }
-  .transform-quote .name{ margin-top:12px; font-weight:600; font-size:13.5px; color:var(--maroon); }
-  @media (max-width:900px){ .transform-grid{ grid-template-columns:1fr; } }
+  .reveal{ opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease; }
+.reveal.in-view{ opacity:1; transform:translateY(0); }
+.transform-marquee-wrap{ overflow:hidden; -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent); mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent); }
+.transform-track{ display:flex; gap:20px; width:max-content; animation:marquee 38s linear infinite; }
+.transform-marquee-wrap:hover .transform-track{ animation-play-state:paused; }
+.transform-slide{ flex:0 0 auto; width:260px; aspect-ratio:4/3; border-radius:10px; overflow:hidden; border:1px solid var(--line); background:var(--cream); }
+.transform-slide img{ width:100%; height:100%; object-fit:cover; display:block; }
+@keyframes marquee{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+@media (max-width:600px){ .transform-slide{ width:200px; } }
 
   .plans-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:22px; align-items:stretch; }
   .plan-card{ background:var(--cream); border:1px solid var(--line); border-radius:14px; padding:0 0 26px; display:flex; flex-direction:column; position:relative; overflow:hidden; }
@@ -248,41 +247,28 @@
   <a href="#" class="btn-solid">Get Stronger</a>
 </div>
 
-<section>
+<section class="reveal">
   <div class="section-head">
     <span class="eyebrow">Client Transformations</span>
     <h2>Real People. Real Results.</h2>
   </div>
-  <div class="transform-grid">
-    <div class="transform-card">
-      <div class="ba-row">
-        <div><img src="https://static.wixstatic.com/media/a49076_636c0528c06047a288f9e195cf6516ea~mv2.jpg" alt="Before"><span class="ba-label">Before</span></div>
-        <div><img src="https://static.wixstatic.com/media/a49076_0efc8d428f9b427fb0fef8e643408c48~mv2.jpg" alt="After"><span class="ba-label">After</span></div>
-      </div>
-      <div class="transform-quote">
-        <q>My experience with Vanshika has been nothing short of transformative — it was about gaining strength and knowledge.</q>
-        <div class="name">— Gunjan</div>
-      </div>
-    </div>
-    <div class="transform-card">
-      <div class="ba-row">
-        <div><img src="https://static.wixstatic.com/media/a49076_85f1cdbf35ca45a3bc26f2e57a45f4fd~mv2.jpg" alt="Before"><span class="ba-label">Before</span></div>
-        <div><img src="https://static.wixstatic.com/media/a49076_8fed2928ade24fe38787dffb699dbece~mv2.jpg" alt="After"><span class="ba-label">After</span></div>
-      </div>
-      <div class="transform-quote">
-        <q>Her program isn't just a plan; it's a lifestyle change. Even my 20-year-long migraines disappeared.</q>
-        <div class="name">— Pratika Reva</div>
-      </div>
-    </div>
-    <div class="transform-card">
-      <div class="ba-row">
-        <div><img src="https://static.wixstatic.com/media/962c7989e46254c1578e72f8fcaf46e4.jpg" alt="Before"><span class="ba-label">Before</span></div>
-        <div><img src="https://static.wixstatic.com/media/11062b_60486754c0054e2ba31918cbdd11dbf5~mv2.jpg" alt="After"><span class="ba-label">After</span></div>
-      </div>
-      <div class="transform-quote">
-        <q>I watched the numbers steadily decrease and muscles I hadn't seen in years emerge.</q>
-        <div class="name">— Taffy</div>
-      </div>
+  <div class="transform-marquee-wrap">
+    <div class="transform-track">
+      <div class="transform-slide"><img src="images/transform-1.jpg" alt="Client transformation"></div>
+      <div class="transform-slide"><img src="images/transform-2.jpg" alt="Client transformation"></div>
+      <div class="transform-slide"><img src="images/transform-3.jpg" alt="Client transformation"></div>
+      <div class="transform-slide"><img src="images/transform-4.jpg" alt="Client transformation"></div>
+      <div class="transform-slide"><img src="images/transform-5.jpg" alt="Client transformation"></div>
+      <div class="transform-slide"><img src="images/transform-6.jpg" alt="Client transformation"></div>
+      <div class="transform-slide"><img src="images/transform-7.jpg" alt="Client transformation"></div>
+      <!-- this second set is a copy of the 7 above, it's what makes the loop seamless — don't delete it -->
+      <div class="transform-slide"><img src="images/transform-1.jpg" alt="Client transformation"></div>
+      <div class="transform-slide"><img src="images/transform-2.jpg" alt="Client transformation"></div>
+      <div class="transform-slide"><img src="images/transform-3.jpg" alt="Client transformation"></div>
+      <div class="transform-slide"><img src="images/transform-4.jpg" alt="Client transformation"></div>
+      <div class="transform-slide"><img src="images/transform-5.jpg" alt="Client transformation"></div>
+      <div class="transform-slide"><img src="images/transform-6.jpg" alt="Client transformation"></div>
+      <div class="transform-slide"><img src="images/transform-7.jpg" alt="Client transformation"></div>
     </div>
   </div>
 </section>
@@ -446,5 +432,18 @@
   nums.forEach(el => observer.observe(el));
 })();
 </script>
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => revealObserver.observe(el));
+</script>
+
 </body>
 </html>
