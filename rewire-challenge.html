@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Rewire Challenge — Strong With Sherni</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#2D322C; --cream:#FAF9F3; --white:#FFFFFF;
+    --maroon:#7B0237; --teal:#1F4037; --coral:#FF833B; --mustard:#9C9C1E;
+    --taupe:#6B6459; --line:rgba(45,50,44,0.13);
+  }
+  *{box-sizing:border-box;}
+  body{ font-family:'Work Sans', sans-serif; background:var(--white); color:var(--ink); margin:0; overflow-x:hidden; }
+  h1,h2,h3{ font-family:'Cormorant Garamond', serif; margin:0; }
+  a{ text-decoration:none; color:inherit; }
+  img{ max-width:100%; display:block; }
+  .eyebrow{ font-size:12px; letter-spacing:0.16em; text-transform:uppercase; font-weight:600; color:var(--coral); }
+
+  nav{ display:flex; align-items:center; justify-content:space-between; padding:20px 6vw; border-bottom:1px solid var(--line); position:sticky; top:0; background:rgba(255,255,255,0.92); backdrop-filter:blur(6px); z-index:50; }
+  .logo{ display:flex; align-items:center; gap:12px; font-family:'Cormorant Garamond',serif; font-weight:600; font-size:21px; }
+  .logo img{ height:52px; width:52px; object-fit:contain; }
+  .nav-links{ display:flex; gap:28px; font-size:13.5px; font-weight:500; }
+  .nav-links a{ opacity:0.75; }
+  .nav-links a.active, .nav-links a:hover{ opacity:1; color:var(--teal); }
+  .nav-cta{ background:var(--maroon); color:var(--white); padding:10px 22px; border-radius:24px; font-size:13px; font-weight:600; }
+  @media (max-width:960px){ .nav-links{ display:none; } }
+  @media (max-width:480px){
+    .logo{ font-size:16px; gap:8px; }
+    .logo img{ height:36px !important; width:36px !important; }
+    .nav-cta{ padding:8px 14px !important; font-size:12px !important; }
+  }
+
+  .page-hero{ background:var(--cream); text-align:center; padding:80px 8vw 60px; }
+  .status-pill{ display:inline-flex; align-items:center; gap:8px; background:var(--white); border:1px solid var(--line); border-radius:24px; padding:8px 18px; font-size:12.5px; font-weight:600; color:var(--teal); margin-bottom:20px; }
+  .status-dot{ width:8px; height:8px; border-radius:50%; background:#3B6D11; }
+  .page-hero h1{ font-size:clamp(34px,4.6vw,54px); font-weight:600; line-height:1.1; }
+  .page-hero h1 em{ font-style:italic; color:var(--maroon); }
+  .page-hero p{ margin-top:16px; color:var(--taupe); max-width:600px; margin-left:auto; margin-right:auto; font-size:16px; line-height:1.65; }
+  .hero-ctas{ margin-top:30px; display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+  .btn-solid{ background:var(--maroon); color:var(--white); padding:15px 30px; border-radius:28px; font-weight:600; font-size:14px; display:inline-block; }
+  .btn-outline{ border:1.5px solid var(--teal); color:var(--teal); padding:14px 30px; border-radius:28px; font-weight:600; font-size:14px; display:inline-block; }
+
+  section{ padding:90px 6vw; }
+  .section-head{ max-width:660px; margin:0 auto 48px; text-align:center; }
+  .section-head h2{ font-size:clamp(28px,3.4vw,38px); font-weight:600; margin-top:10px; }
+  .section-head p{ margin-top:12px; color:var(--taupe); font-size:15.5px; line-height:1.65; }
+
+  .pillar-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:18px; max-width:1150px; margin:0 auto; }
+  .pillar-tile{ background:var(--cream); border-radius:12px; padding:26px 18px; text-align:center; }
+  .pillar-icon{ width:44px; height:44px; border-radius:50%; background:var(--teal); color:var(--white); display:flex; align-items:center; justify-content:center; margin:0 auto 14px; font-size:18px; }
+  .pillar-tile h4{ font-size:14.5px; font-weight:700; margin-bottom:4px; font-family:'Work Sans',sans-serif; }
+  .pillar-tile p{ font-size:12px; color:var(--taupe); line-height:1.4; margin:0; }
+  @media (max-width:860px){ .pillar-grid{ grid-template-columns:repeat(2,1fr); } }
+
+  .stat-strip{ display:grid; grid-template-columns:repeat(4,1fr); background:var(--teal); border-radius:16px; overflow:hidden; max-width:1000px; margin:50px auto 0; }
+  .stat-cell{ text-align:center; padding:30px 16px; border-right:1px solid rgba(255,255,255,0.15); }
+  .stat-cell:last-child{ border-right:none; }
+  .stat-cell .num{ font-family:'Cormorant Garamond',serif; font-size:34px; font-weight:700; color:var(--mustard); }
+  .stat-cell .lbl{ font-size:11.5px; color:var(--cream); opacity:0.85; margin-top:4px; text-transform:uppercase; letter-spacing:0.03em; }
+  @media (max-width:700px){ .stat-strip{ grid-template-columns:repeat(2,1fr); } .stat-cell{ border-bottom:1px solid rgba(255,255,255,0.15); } }
+
+  .included-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; max-width:800px; margin:0 auto; }
+  .included-item{ display:flex; align-items:flex-start; gap:12px; font-size:14px; padding:12px 16px; background:var(--cream); border-radius:10px; }
+  .icon-wrap{ flex-shrink:0; width:22px; height:22px; border-radius:50%; background:rgba(46,125,50,0.14); display:flex; align-items:center; justify-content:center; margin-top:1px; }
+  .icon{ width:12px; height:12px; color:#2E7D32; }
+  @media (max-width:700px){ .included-grid{ grid-template-columns:1fr; } }
+
+  .photo-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; max-width:1100px; margin:0 auto; }
+  .photo-box{ aspect-ratio:1/1; background:var(--cream); border:1px solid var(--line); border-radius:12px; display:flex; align-items:center; justify-content:center; }
+  .photo-box p{ font-size:11.5px; color:var(--taupe); text-align:center; padding:10px; margin:0; }
+  @media (max-width:860px){ .photo-grid{ grid-template-columns:repeat(2,1fr); } }
+
+  .testi-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:28px; max-width:1150px; margin:0 auto; }
+  .testi-card{ background:var(--cream); border:1px solid var(--line); border-radius:12px; padding:28px 24px; }
+  .testi-card q{ font-family:'Cormorant Garamond',serif; font-style:italic; font-size:17px; line-height:1.55; display:block; quotes:none; }
+  .testi-name{ margin-top:16px; font-weight:600; font-size:13.5px; color:var(--maroon); }
+  @media (max-width:900px){ .testi-grid{ grid-template-columns:1fr; } }
+
+  .rules-band{ background:var(--maroon); color:var(--cream); text-align:center; }
+  .rules-band .eyebrow{ color:var(--coral); }
+  .rules-band h2{ color:var(--cream); font-size:clamp(26px,3.2vw,36px); margin-top:12px; }
+  .rules-list{ display:flex; justify-content:center; gap:40px; flex-wrap:wrap; margin-top:30px; }
+  .rules-list div{ font-size:13.5px; opacity:0.9; max-width:220px; }
+  .rules-list b{ display:block; font-family:'Cormorant Garamond',serif; font-size:20px; margin-bottom:6px; color:var(--mustard); }
+
+  .cta-band{ text-align:center; }
+  .cta-band h2{ font-size:clamp(28px,3.6vw,42px); font-weight:600; max-width:600px; margin:0 auto 16px; }
+  .cta-band p{ color:var(--taupe); max-width:460px; margin:0 auto 30px; font-size:16px; }
+
+  footer{ background:var(--white); color:var(--ink); padding:64px 6vw 30px; border-top:1px solid var(--line); text-align:center; }
+  footer .logo{ justify-content:center; margin-bottom:10px; }
+  .foot-bottom{ margin-top:20px; font-size:12px; color:var(--taupe); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><img src="logo.png" alt="Strong With Sherni logo">Strong With Sherni</div>
+  <div class="nav-links">
+    <a href="index.html#services">Services</a>
+    <a href="individual-coaching.html">Individual Coaching</a>
+    <a href="buddy-program.html">Buddy Program</a>
+    <a href="pcos-coaching.html">PCOS Coaching</a>
+    <a href="#" class="active">Rewire Challenge</a>
+  </div>
+  <a href="index.html#contact" class="nav-cta">Book a Call</a>
+</nav>
+
+<section class="page-hero">
+  <div class="status-pill"><span class="status-dot"></span> Rewire 3.0 in progress · Started Aug 3</div>
+  <span class="eyebrow">60-Day Challenge</span>
+  <h1 style="margin-top:14px;">The <em>Rewire</em> Challenge</h1>
+  <p>A 60-day lifestyle reset — not a sprint. Built around five pillars: sleep, mindfulness, nutrition, movement, and digital balance. Small habits, tracked daily, done consistently, until they stop feeling like a challenge and start feeling like your life.</p>
+  <div class="hero-ctas">
+    <a href="https://wa.me/919036147675?text=Hi!%20I%27d%20like%20to%20join%20the%20Rewire%204.0%20waitlist." class="btn-solid" target="_blank" rel="noopener">Join the Rewire 4.0 Waitlist</a>
+    <a href="https://wa.me/919036147675?text=Hi!%20I%27d%20like%20to%20know%20more%20about%20the%20Rewire%20Challenge." class="btn-outline" target="_blank" rel="noopener">DM to Learn More</a>
+  </div>
+</section>
+
+<section>
+  <div class="section-head">
+    <span class="eyebrow">The Five Pillars</span>
+    <h2>What Rewire actually rewires</h2>
+    <p>Every habit on the tracker touches one of these — nothing random, nothing just for the sake of doing more.</p>
+  </div>
+  <div class="pillar-grid">
+    <div class="pillar-tile">
+      <div class="pillar-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M12 6v6l4 2"/></svg></div>
+      <h4>Sleep</h4>
+      <p>7h 15m target — a full sleep cycle, not a random number</p>
+    </div>
+    <div class="pillar-tile">
+      <div class="pillar-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l2 2"/></svg></div>
+      <h4>Mindfulness</h4>
+      <p>Daily meditation, journaling, and breathwork</p>
+    </div>
+    <div class="pillar-tile">
+      <div class="pillar-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h16M4 12a8 8 0 0116 0M4 12a8 8 0 008 8"/></svg></div>
+      <h4>Nutrition</h4>
+      <p>Meal logging, hydration, and mindful check-ins</p>
+    </div>
+    <div class="pillar-tile">
+      <div class="pillar-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg></div>
+      <h4>Movement</h4>
+      <p>10,000 steps daily + 5-7 training sessions a week</p>
+    </div>
+    <div class="pillar-tile">
+      <div class="pillar-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div>
+      <h4>Digital Balance</h4>
+      <p>Max 1 hour/day of social apps</p>
+    </div>
+  </div>
+
+  <div class="stat-strip">
+    <div class="stat-cell"><div class="num">60</div><div class="lbl">Days</div></div>
+    <div class="stat-cell"><div class="num">8</div><div class="lbl">Weeks</div></div>
+    <div class="stat-cell"><div class="num">12</div><div class="lbl">Habits Tracked</div></div>
+    <div class="stat-cell"><div class="num">100</div><div class="lbl">Weekly Point Target</div></div>
+  </div>
+</section>
+
+<section style="background:var(--cream);">
+  <div class="section-head">
+    <span class="eyebrow">What's Included</span>
+    <h2>How you're supported through it</h2>
+  </div>
+  <div class="included-grid">
+    <div class="included-item"><span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span> Daily habit tracking across 12 habits</div>
+    <div class="included-item"><span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span> Personal accountability from your coach</div>
+    <div class="included-item"><span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span> Supportive community group</div>
+    <div class="included-item"><span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span> Weekly point targets, not rigid daily rules</div>
+    <div class="included-item"><span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span> Weekly physique check-ins</div>
+    <div class="included-item"><span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span> Completion certificate at day 60</div>
+  </div>
+</section>
+
+<section class="rules-band">
+  <span class="eyebrow">The Ground Rules</span>
+  <h2>Simple, non-negotiable, sustainable</h2>
+  <div class="rules-list">
+    <div><b>5-5.5 days</b>average needed per habit, per week — not a perfect 7</div>
+    <div><b>Zero</b>alcohol or smoking for the full 60 days</div>
+    <div><b>100 pts</b>weekly target, every week, for all 8 weeks</div>
+  </div>
+</section>
+
+<section>
+  <div class="section-head">
+    <span class="eyebrow">Rewire 3.0</span>
+    <h2>Photos From This Round</h2>
+  </div>
+  <div class="photo-grid">
+    <div class="photo-box"><p>Challenge photo</p></div>
+    <div class="photo-box"><p>Challenge photo</p></div>
+    <div class="photo-box"><p>Challenge photo</p></div>
+    <div class="photo-box"><p>Challenge photo</p></div>
+  </div>
+</section>
+
+<section style="background:var(--cream);">
+  <div class="section-head">
+    <span class="eyebrow">In Their Words</span>
+    <h2>What the Rewire community is saying</h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <q>Training was honestly the hardest part for me since the rest of my habits were already routine. But today I finally worked out after a long time — that's my biggest win. Meditation has helped so much too — even the smallest things feel like they bring more happiness now.</q>
+      <div class="testi-name">— Rewire 3.0 Participant</div>
+    </div>
+    <div class="testi-card">
+      <q>If I were doing this alone, I wouldn't stick to it daily — totally worth it and glad I said yes. Reading and meditation are still hard for me to tick consistently, but water intake has become second nature.</q>
+      <div class="testi-name">— Su, Rewire 3.0</div>
+    </div>
+    <div class="testi-card">
+      <q>REWIRE's always a tough nut to crack — the tasks look small until the auto-pilot mode kicks in. This time, maintaining sleep hours was my toughest task, and I only realised how inconsistent my sleep was because of this challenge. Water intake has genuinely improved for me.</q>
+      <div class="testi-name">— Rukhmini, Rewire 3.0</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <span class="eyebrow">Next Round</span>
+  <h2 style="margin-top:14px;">Rewire 4.0 is coming — want in?</h2>
+  <p>Rewire 3.0 is already underway, but the next round is opening soon. DM to get on the waitlist and be first to know when it starts.</p>
+  <a href="https://wa.me/919036147675?text=Hi!%20I%27d%20like%20to%20join%20the%20Rewire%204.0%20waitlist." class="btn-solid" target="_blank" rel="noopener">DM to Join the Waitlist</a>
+</section>
+
+<footer>
+  <div class="logo"><img src="logo.png" alt="Strong With Sherni logo">Strong With Sherni</div>
+  <div class="foot-bottom">© 2026 Strong With Sherni. All rights reserved. · Bengaluru, India</div>
+</footer>
+
+</body>
+</html>
