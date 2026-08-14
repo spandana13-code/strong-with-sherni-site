@@ -19,7 +19,7 @@
     --line:rgba(45,50,44,0.13);
   }
   *{box-sizing:border-box; margin:0; padding:0;}
-  body{ font-family:'Work Sans', sans-serif; background:var(--white); color:var(--ink); -webkit-font-smoothing:antialiased; }
+  body{ font-family:'Work Sans', sans-serif; background:var(--white); overflow-x: hidden; -webkit-font-smoothing:antialiased; }
   h1,h2,h3,.serif{ font-family:'Cormorant Garamond', serif; }
   a{ text-decoration:none; color:inherit; }
   img{ max-width:100%; display:block; }
@@ -29,6 +29,13 @@
 
   nav{ display:flex; align-items:center; justify-content:space-between; padding:20px 6vw; border-bottom:1px solid var(--line); position:sticky; top:0; background:rgba(255,255,255,0.92); backdrop-filter:blur(6px); z-index:50; }
   .logo{ display:flex; align-items:center; gap:12px; font-family:'Cormorant Garamond',serif; font-weight:600; font-size:21px; }
+
+  @media (max-width:480px){
+  .logo{ font-size:16px; gap:8px; }
+  .logo img{ height:36px !important; width:36px !important; }
+  .nav-cta{ padding:8px 14px !important; font-size:12px !important; }
+}
+
   .logo img{ height:52px; width:52px; object-fit:contain; }
   .nav-links{ display:flex; gap:34px; font-size:13.5px; font-weight:500; }
   .nav-links a{ opacity:0.75; }
@@ -49,11 +56,12 @@
   .hero-card h1{ font-size:clamp(32px,3.6vw,50px); font-weight:600; line-height:1.15; font-family:'Work Sans',sans-serif; }
   .hero-card p{ margin-top:20px; font-size:16px; line-height:1.6; opacity:0.9; max-width:400px; }
   .hero-card .btn-teal{ margin-top:30px; width:fit-content; }
-  @media (max-width:860px){
+ @media (max-width:860px){
     .hero{ height:auto; }
-    .hero-card{ position:relative; width:100%; border-radius:0; padding:60px 8vw; }
+    .hero-card{ position:relative; width:100%; border-radius:0; padding:60px 8vw; min-width:0; }
     .hero-bg{ position:relative; height:50vh; }
-  }
+}
+
   .wellness-strip{ padding:70px 6vw 90px; text-align:center; }
   .wellness-strip h2{ font-size:clamp(26px,3.2vw,36px); font-weight:600; max-width:640px; margin:0 auto 8px; }
   .wellness-strip p{ color:var(--taupe); font-size:15px; margin-bottom:40px; }
