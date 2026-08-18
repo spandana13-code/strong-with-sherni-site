@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Strong With Sherni</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#2D322C; --cream:#FAF9F3; --white:#FFFFFF;
+    --maroon:#7B0237; --teal:#1F4037; --coral:#FF833B; --mustard:#9C9C1E;
+    --taupe:#6B6459; --line:rgba(45,50,44,0.13);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{ font-family:'Work Sans', sans-serif; background:var(--white); color:var(--ink); }
+  h1,h2,h3{ font-family:'Cormorant Garamond', serif; }
+  a{ text-decoration:none; color:inherit; }
+  .eyebrow{ font-size:12px; letter-spacing:0.16em; text-transform:uppercase; font-weight:600; color:var(--coral); }
+
+  nav{ display:flex; align-items:center; justify-content:space-between; padding:20px 6vw; border-bottom:1px solid var(--line); position:sticky; top:0; background:rgba(255,255,255,0.92); backdrop-filter:blur(6px); z-index:50; }
+  .logo{ display:flex; align-items:center; gap:12px; font-family:'Cormorant Garamond',serif; font-weight:600; font-size:21px; }
+  .logo img{ height:52px; width:52px; object-fit:contain; }
+  .nav-links{ display:flex; gap:34px; font-size:13.5px; font-weight:500; }
+  .nav-links a{ opacity:0.75; }
+  .nav-links a.active, .nav-links a:hover{ opacity:1; color:var(--teal); }
+  .nav-cta{ background:var(--maroon); color:var(--white); padding:10px 22px; border-radius:24px; font-size:13px; font-weight:600; }
+  @media (max-width:860px){ .nav-links{ display:none; } }
+
+  .page-hero{ background:var(--cream); text-align:center; padding:80px 8vw 60px; }
+  .page-hero h1{ font-size:clamp(34px,4.4vw,52px); font-weight:600; margin-top:14px; }
+  .page-hero p{ margin-top:16px; color:var(--taupe); max-width:560px; margin-left:auto; margin-right:auto; font-size:16px; line-height:1.6; }
+
+  .blog-grid{ max-width:1100px; margin:0 auto; padding:70px 6vw 100px; display:grid; grid-template-columns:repeat(2,1fr); gap:32px; }
+  .blog-card{ border:1px solid var(--line); border-radius:14px; overflow:hidden; background:var(--white); display:flex; flex-direction:column; transition:transform .25s ease, box-shadow .25s ease; }
+  .blog-card:hover{ transform:translateY(-4px); box-shadow:0 16px 34px rgba(45,50,44,0.1); }
+  .blog-card-photo{ aspect-ratio:16/10; background:var(--cream); display:flex; align-items:center; justify-content:center; overflow:hidden; }
+  .blog-card-photo img{ width:100%; height:100%; object-fit:cover; }
+  .blog-card-photo .photo-placeholder{ color:var(--taupe); font-size:12.5px; font-weight:600; }
+  .blog-card-body{ padding:24px 26px 28px; flex-grow:1; display:flex; flex-direction:column; }
+  .blog-tag{ font-size:11px; letter-spacing:0.1em; text-transform:uppercase; font-weight:700; color:var(--teal); }
+  .blog-card h3{ font-size:22px; font-weight:600; margin-top:10px; line-height:1.25; }
+  .blog-card p{ font-size:13.5px; color:var(--taupe); line-height:1.6; margin-top:12px; flex-grow:1; }
+  .blog-meta{ margin-top:18px; font-size:12px; color:var(--taupe); display:flex; justify-content:space-between; align-items:center; }
+  .blog-read{ font-weight:700; color:var(--maroon); }
+  @media (max-width:760px){ .blog-grid{ grid-template-columns:1fr; } }
+
+  footer{ background:var(--white); color:var(--ink); padding:64px 6vw 30px; border-top:1px solid var(--line); text-align:center; }
+  footer .logo{ justify-content:center; margin-bottom:10px; }
+  .foot-bottom{ margin-top:20px; font-size:12px; color:var(--taupe); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><img src="logo.png" alt="Strong With Sherni logo">Strong With Sherni</div>
+  <div class="nav-links">
+    <a href="index.html#services">Services</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#transformations">Transformations</a>
+    <a href="individual-coaching.html">Individual Coaching</a>
+    <a href="buddy-program.html">Buddy Program</a>
+    <a href="pcos-coaching.html">PCOS Coaching</a>
+    <a href="rewire-challenge.html">Rewire Challenge</a>
+    <a href="#" class="active">Blog</a>
+  </div>
+  <a href="https://wa.me/919036147675?text=Hi!%20I%27d%20like%20to%20book%20a%20free%20consultation." class="nav-cta" target="_blank" rel="noopener">Book a Call</a>
+</nav>
+
+<section class="page-hero">
+  <span class="eyebrow">Health &amp; Wellness Blog</span>
+  <h1>Real talk on strength, hormones &amp; habits</h1>
+  <p>Practical, science-backed guidance on fitness, PCOS, and building a lifestyle that actually fits — written for women juggling real, busy lives.</p>
+</section>
+
+<div class="blog-grid">
+
+  <a href="blog-consistency-results.html" class="blog-card">
+    <div class="blog-card-photo"><div class="photo-placeholder">Blog photo</div></div>
+    <div class="blog-card-body">
+      <span class="blog-tag">Mindset</span>
+      <h3>How to Stay Consistent When You're Not Seeing Results Yet</h3>
+      <p>Why real progress is slower and quieter than the scale suggests — and what to track instead so you don't quit right before it clicks.</p>
+      <div class="blog-meta"><span>3 min read</span><span class="blog-read">Read more →</span></div>
+    </div>
+  </a>
+
+  <a href="blog-saying-no.html" class="blog-card">
+    <div class="blog-card-photo"><div class="photo-placeholder">Blog photo</div></div>
+    <div class="blog-card-body">
+      <span class="blog-tag">Energy &amp; Hormones</span>
+      <h3>The Power of Saying No: Energy Management for Busy Women</h3>
+      <p>Why constantly saying "yes" quietly drains your hormones — and simple scripts to protect your energy without the guilt.</p>
+      <div class="blog-meta"><span>3 min read</span><span class="blog-read">Read more →</span></div>
+    </div>
+  </a>
+
+  <a href="blog-pcos-periods.html" class="blog-card">
+    <div class="blog-card-photo"><div class="photo-placeholder">Blog photo</div></div>
+    <div class="blog-card-body">
+      <span class="blog-tag">PCOS</span>
+      <h3>How to Naturally Support Regular Periods with PCOS</h3>
+      <p>Blood sugar, food, sleep, and stress — the everyday levers that support ovulation and cycle regularity, no medication required.</p>
+      <div class="blog-meta"><span>4 min read</span><span class="blog-read">Read more →</span></div>
+    </div>
+  </a>
+
+  <a href="blog-fitness-busy-woman.html" class="blog-card">
+    <div class="blog-card-photo"><div class="photo-placeholder">Blog photo</div></div>
+    <div class="blog-card-body">
+      <span class="blog-tag">Fitness</span>
+      <h3>Real Talk: Staying Consistent with Fitness as a Busy Woman</h3>
+      <p>You don't need an hour at the gym. Small, doable movement that fits into a packed schedule — and actually sticks.</p>
+      <div class="blog-meta"><span>3 min read</span><span class="blog-read">Read more →</span></div>
+    </div>
+  </a>
+
+</div>
+
+<footer>
+  <div class="logo"><img src="logo.png" alt="Strong With Sherni logo">Strong With Sherni</div>
+  <div class="foot-bottom">© 2026 Strong With Sherni. All rights reserved. · Bengaluru, India</div>
+</footer>
+
+</body>
+</html>
