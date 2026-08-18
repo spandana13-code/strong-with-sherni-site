@@ -404,8 +404,7 @@
         const days = daysLeft(end);
         const group = statusGroup(c);
         const needsAttention = ["critical","warning"].includes(group) && !c.onboarding_done;
-        const wa = waLink(c.phone, `Hi ${c.name.split(" ")[0]}, this is a reminder from Strong With Sherni — your programme has ${days!==null?Math.max(0,days):"a few"} day(s) left. Let's chat about next steps!`);
-
+        const pauseLine = Number(c.pause_days||0) > 0 ? `⏸️ Paused Days: ${c.pause_days} (added to your end date)\n` : ""; const referralLine = Number(c.referral_days||0) > 0 ? `🎁 Referral Bonus: ${c.referral_days} day(s) added\n` : ""; const extensionLine = Number(c.extension_days||0) > 0 ? `➕ Extension: ${c.extension_days} day(s) added\n` : ""; const reminderMsg = `Hi ${c.name.split(" ")[0]}! 👋\n\nQuick update on your Strong With Sherni programme:\n\n📅 Start Date: ${fmt(c.join_date)}\n📅 End Date: ${fmt(end)}\n⏳ Days Left: ${days!==null?Math.max(0,days):"a few"}\n${pauseLine}${referralLine}${extensionLine}\nLet's connect about your next steps!`; const wa = waLink(c.phone, reminderMsg);
         if(idx===firstExpiredIdx && firstExpiredIdx>0){
           html += `<div class="expired-divider"><span>Expired</span><div class="line"></div></div>`;
         }
