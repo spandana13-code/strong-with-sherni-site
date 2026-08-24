@@ -72,10 +72,17 @@
   .link-tile:hover .link-photo img{ transform:scale(1.05); }
   .link-item{ font-weight:600; font-size:15px; padding-bottom:6px; border-bottom:2px solid var(--coral); display:inline-block; }
 
-  .badges-row{ display:flex; align-items:center; justify-content:center; gap:36px; flex-wrap:wrap; padding:40px 6vw; background:var(--cream); }
-  .badges-row img{ height:40px; width:auto; opacity:0.9; }
+  
+  .badges-row{ display:flex; flex-direction:column; align-items:center; gap:22px; padding:60px 6vw; background:var(--cream); }
+.badges-heading{ text-align:center; }
+.badges-heading h3{ font-size:24px; font-weight:600; margin-top:8px; }
+.badges-logos{ display:flex; align-items:center; justify-content:center; gap:48px; flex-wrap:wrap; }
+.badges-logos img{ height:64px; width:auto; opacity:0.9; }
   .cert-badge{ cursor:pointer; transition:transform .2s ease, opacity .2s ease; }
 .cert-badge:hover{ transform:translateY(-3px); opacity:1; }
+.cert-badge{ opacity:0; transform:translateY(16px) scale(0.94); transition:transform .5s ease, opacity .5s ease, box-shadow .2s ease; }
+.badges-row.in-view .cert-badge{ opacity:0.9; transform:translateY(0) scale(1); }
+.badges-row.in-view .cert-badge:nth-child(2){ transition-delay:.12s; }
 #cert-modal{ display:none; position:fixed; inset:0; background:rgba(45,50,44,0.85); z-index:200; align-items:center; justify-content:center; padding:30px; }
 #cert-modal img{ max-width:90vw; max-height:80vh; border-radius:8px; box-shadow:0 20px 60px rgba(0,0,0,0.4); }
 .cert-modal-close{ position:absolute; top:24px; right:32px; color:#fff; font-size:32px; cursor:pointer; font-weight:300; }
@@ -227,10 +234,12 @@
   </div>
 </div>
 
-<div class="badges-row">
-  <img src="images/logo-prehab121.png" alt="PREHAB 121 Academy Certified" class="cert-badge" onclick="openCert('prehab')">
-  <img src="images/logo-infs.png" alt="INFS Certified" class="cert-badge" onclick="openCert('infs')">
-</div>
+<div class="badges-row reveal">
+  <div class="badges-heading">
+    <span class="eyebrow">Trusted Credentials</span>
+    <h3>Certified &amp; Trained By</h3>
+  </div>
+  <div class="badges-logos">
 
 <section class="about reveal" id="about">
   <div class="about-grid">
