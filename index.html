@@ -74,6 +74,15 @@
 
   .badges-row{ display:flex; align-items:center; justify-content:center; gap:36px; flex-wrap:wrap; padding:40px 6vw; background:var(--cream); }
   .badges-row img{ height:40px; width:auto; opacity:0.9; }
+  .cert-badge{ cursor:pointer; transition:transform .2s ease, opacity .2s ease; }
+.cert-badge:hover{ transform:translateY(-3px); opacity:1; }
+#cert-modal{ display:none; position:fixed; inset:0; background:rgba(45,50,44,0.85); z-index:200; align-items:center; justify-content:center; padding:30px; }
+#cert-modal img{ max-width:90vw; max-height:80vh; border-radius:8px; box-shadow:0 20px 60px rgba(0,0,0,0.4); }
+.cert-modal-close{ position:absolute; top:24px; right:32px; color:#fff; font-size:32px; cursor:pointer; font-weight:300; }
+.cert-modal-nav{ position:absolute; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.15); color:#fff; border:none; font-size:22px; width:44px; height:44px; border-radius:50%; cursor:pointer; }
+.cert-modal-nav.prev{ left:20px; }
+.cert-modal-nav.next{ right:20px; }
+#cert-modal-counter{ position:absolute; bottom:24px; left:50%; transform:translateX(-50%); color:#fff; font-size:13px; }
 
   section{ padding:100px 6vw; }
   .section-head{ max-width:640px; margin:0 auto 56px; text-align:center; }
@@ -219,10 +228,8 @@
 </div>
 
 <div class="badges-row">
-  <span style="font-weight:700; color:var(--taupe); font-size:14px;">ACE CERTIFIED</span>
-  <span style="font-weight:700; color:var(--taupe); font-size:14px;">NASM · CERTIFIED CNC</span>
-  <span style="font-weight:700; color:var(--taupe); font-size:14px;">INFS</span>
-  <span style="font-weight:700; color:var(--taupe); font-size:14px;">PREHAB</span>
+  <img src="images/logo-prehab121.png" alt="PREHAB 121 Academy Certified" class="cert-badge" onclick="openCert('prehab')">
+  <img src="images/logo-infs.png" alt="INFS Certified" class="cert-badge" onclick="openCert('infs')">
 </div>
 
 <section class="about reveal" id="about">
@@ -457,6 +464,37 @@
     });
   }, { threshold: 0.15 });
   revealEls.forEach(el => revealObserver.observe(el));
+</script>
+
+<div id="cert-modal">
+  <span class="cert-modal-close" onclick="closeCert()">&times;</span>
+  <button class="cert-modal-nav prev" onclick="certPrev()">&#8249;</button>
+  <img id="cert-modal-img" src="" alt="Certificate">
+  <button class="cert-modal-nav next" onclick="certNext()">&#8250;</button>
+  <div id="cert-modal-counter"></div>
+</div>
+<script>
+  const certData = {
+    prehab: ["images/cert-prehab-nutrition.png", "images/cert-prehab-functional.png", "images/cert-prehab-diploma.png"],
+    infs: ["images/cert-infs-nutrition.png"]
+  };
+  let certImgs = [];
+  let certIndex = 0;
+  function openCert(key){
+    certImgs = certData[key];
+    certIndex = 0;
+    showCertImg();
+    document.getElementById('cert-modal').style.display = 'flex';
+  }
+  function showCertImg(){
+    document.getElementById('cert-modal-img').src = certImgs[certIndex];
+    document.getElementById('cert-modal-counter').textContent = certImgs.length > 1 ? (certIndex+1) + " / " + certImgs.length : "";
+    document.querySelector('.cert-modal-nav.prev').style.display = certImgs.length > 1 ? 'flex' : 'none';
+    document.querySelector('.cert-modal-nav.next').style.display = certImgs.length > 1 ? 'flex' : 'none';
+  }
+  function certNext(){ certIndex = (certIndex + 1) % certImgs.length; showCertImg(); }
+  function certPrev(){ certIndex = (certIndex - 1 + certImgs.length) % certImgs.length; showCertImg(); }
+  function closeCert(){ document.getElementById('cert-modal').style.display = 'none'; }
 </script>
 
 </body>
