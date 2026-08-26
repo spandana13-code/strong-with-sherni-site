@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nutrition — Strong With Sherni</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#2D322C; --cream:#FAF9F3; --white:#FFFFFF;
+    --maroon:#7B0237; --teal:#1F4037; --coral:#FF833B; --mustard:#9C9C1E;
+    --taupe:#6B6459; --line:rgba(45,50,44,0.13);
+  }
+  *{box-sizing:border-box;}
+  body{ font-family:'Work Sans', sans-serif; background:var(--white); color:var(--ink); margin:0; overflow-x:hidden; }
+  h1,h2,h3{ font-family:'Cormorant Garamond', serif; margin:0; }
+  a{ text-decoration:none; color:inherit; }
+  img{ max-width:100%; display:block; }
+  .eyebrow{ font-size:12px; letter-spacing:0.16em; text-transform:uppercase; font-weight:600; color:var(--coral); }
+
+  nav{ display:flex; align-items:center; justify-content:space-between; padding:20px 6vw; border-bottom:1px solid var(--line); position:sticky; top:0; background:rgba(255,255,255,0.92); backdrop-filter:blur(6px); z-index:50; }
+  .logo{ display:flex; align-items:center; gap:12px; font-family:'Cormorant Garamond',serif; font-weight:600; font-size:21px; }
+  .logo img{ height:52px; width:52px; object-fit:contain; }
+  .nav-links{ display:flex; gap:28px; font-size:13.5px; font-weight:500; }
+  .nav-links a{ opacity:0.75; }
+  .nav-links a.active, .nav-links a:hover{ opacity:1; color:var(--teal); }
+  .nav-cta{ background:var(--maroon); color:var(--white); padding:10px 22px; border-radius:24px; font-size:13px; font-weight:600; }
+  @media (max-width:960px){ .nav-links{ display:none; } }
+  @media (max-width:480px){
+    .logo{ font-size:16px; gap:8px; }
+    .logo img{ height:36px !important; width:36px !important; }
+    .nav-cta{ padding:8px 14px !important; font-size:12px !important; }
+  }
+
+  .page-hero{ background:var(--cream); text-align:center; padding:80px 8vw 60px; }
+  .page-hero h1{ font-size:clamp(34px,4.6vw,54px); font-weight:600; line-height:1.1; }
+  .page-hero h1 em{ font-style:italic; color:var(--maroon); }
+  .page-hero p{ margin-top:16px; color:var(--taupe); max-width:600px; margin-left:auto; margin-right:auto; font-size:16px; line-height:1.65; }
+  .hero-ctas{ margin-top:30px; display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+  .btn-solid{ background:var(--maroon); color:var(--white); padding:15px 30px; border-radius:28px; font-weight:600; font-size:14px; display:inline-block; transition:transform .25s ease, box-shadow .25s ease; }
+  .btn-outline{ border:1.5px solid var(--teal); color:var(--teal); padding:14px 30px; border-radius:28px; font-weight:600; font-size:14px; display:inline-block; transition:transform .25s ease; }
+  .btn-solid:hover{ transform:translateY(-3px); box-shadow:0 10px 24px rgba(123,2,55,0.25); }
+  .btn-outline:hover{ transform:translateY(-3px); }
+
+  .philosophy-section{ display:grid; grid-template-columns:0.85fr 1.15fr; gap:60px; align-items:center; max-width:1150px; margin:0 auto; }
+  .philosophy-photo{ border-radius:16px; overflow:hidden; aspect-ratio:3/4; }
+  .philosophy-photo img{ width:100%; height:100%; object-fit:cover; }
+  .philosophy-text h2{ font-size:clamp(28px,3.4vw,38px); font-weight:600; margin-top:10px; line-height:1.15; }
+  .philosophy-text p{ margin-top:18px; color:var(--taupe); font-size:15.5px; line-height:1.75; }
+  .philosophy-points{ margin-top:26px; display:flex; flex-direction:column; gap:14px; }
+  .philosophy-point{ display:flex; gap:12px; align-items:flex-start; font-size:14.5px; }
+  .philosophy-point .dot{ flex-shrink:0; width:8px; height:8px; border-radius:50%; background:var(--coral); margin-top:7px; }
+  @media (max-width:860px){ .philosophy-section{ grid-template-columns:1fr; gap:32px; } .philosophy-photo{ aspect-ratio:4/3; max-width:420px; margin:0 auto; } }
+
+  section{ padding:90px 6vw; }
+  .section-head{ max-width:660px; margin:0 auto 48px; text-align:center; }
+  .section-head h2{ font-size:clamp(28px,3.4vw,38px); font-weight:600; margin-top:10px; }
+  .section-head p{ margin-top:12px; color:var(--taupe); font-size:15.5px; line-height:1.65; }
+
+  /* scroll reveal */
+  .reveal{ opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in-view{ opacity:1; transform:translateY(0); }
+
+  /* flip card gallery */
+  .flip-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:26px; max-width:1150px; margin:0 auto; }
+  .flip-card{ perspective:1200px; aspect-ratio:2/3; cursor:pointer; }
+  .flip-inner{ position:relative; width:100%; height:100%; transition:transform .6s cubic-bezier(.4,.2,.2,1); transform-style:preserve-3d; }
+  .flip-card.flipped .flip-inner{ transform:rotateY(180deg); }
+  .flip-front, .flip-back{ position:absolute; inset:0; backface-visibility:hidden; border-radius:14px; overflow:hidden; border:1px solid var(--line); }
+  .flip-front{ background:var(--cream); }
+  .flip-front img{ width:100%; height:100%; object-fit:cover; }
+  .flip-front .flip-tag{ position:absolute; top:12px; left:12px; background:var(--maroon); color:var(--white); font-size:11px; font-weight:700; letter-spacing:0.03em; padding:6px 12px; border-radius:16px; }
+  .flip-front .flip-hint{ position:absolute; bottom:12px; right:12px; background:rgba(255,255,255,0.9); color:var(--ink); font-size:10.5px; font-weight:600; padding:5px 10px; border-radius:12px; }
+  .flip-back{ background:var(--teal); color:var(--white); transform:rotateY(180deg); padding:26px 22px; display:flex; flex-direction:column; }
+  .flip-back .flip-back-label{ font-size:11px; letter-spacing:0.1em; text-transform:uppercase; font-weight:700; color:var(--mustard); }
+  .flip-back h4{ font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:600; margin-top:6px; }
+  .flip-stats{ display:flex; gap:14px; margin-top:16px; }
+  .flip-stat{ text-align:center; }
+  .flip-stat .n{ font-family:'Cormorant Garamond',serif; font-size:19px; font-weight:700; color:var(--mustard); }
+  .flip-stat .l{ font-size:9.5px; opacity:0.8; text-transform:uppercase; letter-spacing:0.03em; }
+  .flip-back p{ font-size:12.5px; line-height:1.6; opacity:0.92; margin-top:16px; flex-grow:1; }
+  .flip-back .flip-close-hint{ font-size:10.5px; opacity:0.7; text-align:center; }
+  @media (max-width:900px){ .flip-grid{ grid-template-columns:repeat(2,1fr); gap:18px; } }
+
+  .cta-band{ text-align:center; background:var(--cream); }
+  .cta-band h2{ font-size:clamp(28px,3.6vw,42px); font-weight:600; max-width:600px; margin:0 auto 16px; }
+  .cta-band p{ color:var(--taupe); max-width:480px; margin:0 auto 26px; font-size:15px; }
+
+  footer{ background:var(--white); color:var(--ink); padding:64px 6vw 30px; border-top:1px solid var(--line); text-align:center; }
+  footer .logo{ justify-content:center; margin-bottom:10px; }
+  .foot-bottom{ margin-top:20px; font-size:12px; color:var(--taupe); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><img src="logo.png" alt="Strong With Sherni logo">Strong With Sherni</div>
+  <div class="nav-links">
+    <a href="index.html#services">Services</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#transformations">Transformations</a>
+    <a href="rewire-challenge.html">Rewire Challenge</a>
+    <a href="nutrition.html" class="active">Nutrition</a>
+    <a href="blog.html">Blog</a>
+  </div>
+  <a href="https://wa.me/919036147675?text=Hi!%20I%27d%20like%20to%20book%20a%20free%20consultation." class="nav-cta" target="_blank" rel="noopener">Book a Call</a>
+</nav>
+
+<section class="page-hero">
+  <span class="eyebrow">Nutrition</span>
+  <h1>Food is <em>fuel</em>,<br>not a punishment</h1>
+  <p>Training gets you halfway there — what's on your plate does the rest. Here's a real look at how clients eat while working with me: no crash diets, no extreme restriction, just consistent, sustainable meals built around real life.</p>
+  <div class="hero-ctas">
+    <a href="https://wa.me/919036147675?text=Hi!%20I%27d%20like%20to%20know%20more%20about%20nutrition%20coaching." class="btn-solid" target="_blank" rel="noopener">Get a Nutrition Plan</a>
+    <a href="#gallery" class="btn-outline">See What Clients Eat</a>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="philosophy-section">
+    <div class="philosophy-photo">
+      <img src="images/philosophy-photo.jpg" alt="Client enjoying a meal out, no food guilt">
+    </div>
+    <div class="philosophy-text">
+      <span class="eyebrow">My Approach</span>
+      <h2>No crash diets. No foods off-limits.</h2>
+      <p>If a nutrition plan can't survive a burger night out with friends, it's not a plan you can live with — and it definitely won't last. My clients eat real food, including the stuff you actually enjoy, because sustainable results come from consistency, not restriction.</p>
+      <div class="philosophy-points">
+        <div class="philosophy-point"><span class="dot"></span> Every plan is built around your actual life, not a generic template</div>
+        <div class="philosophy-point"><span class="dot"></span> Nothing is "off-limits" — we build room for the foods you love</div>
+        <div class="philosophy-point"><span class="dot"></span> Progress is measured in habits and energy, not just the scale</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reveal" id="gallery">
+  <div class="section-head">
+    <span class="eyebrow">What My Clients Eat</span>
+    <h2>Real Days, Real Plates</h2>
+    <p>Tap a card to flip it and see the full breakdown — calories, protein, water, and why it's built the way it is.</p>
+  </div>
+  <div class="flip-grid">
+
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <img src="images/wieiad-1.jpg" alt="Client meal plan example 1">
+          <span class="flip-tag">Fat Loss</span>
+          <span class="flip-hint">Tap to flip</span>
+        </div>
+        <div class="flip-back">
+          <span class="flip-back-label">Coach's Notes</span>
+          <h4>Diabetes-Friendly Plan</h4>
+          <div class="flip-stats">
+            <div class="flip-stat"><div class="n">1700</div><div class="l">kcal</div></div>
+            <div class="flip-stat"><div class="n">90g</div><div class="l">protein</div></div>
+            <div class="flip-stat"><div class="n">2.5L</div><div class="l">water</div></div>
+          </div>
+          <p>Built around steady blood sugar — smaller, frequent meals with paneer and legumes for protein, and no refined sugar. High protein keeps this client full between meals without spiking glucose.</p>
+          <div class="flip-close-hint">Tap to flip back</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <img src="images/wieiad-2.jpg" alt="Client meal plan example 2">
+          <span class="flip-tag">High Protein</span>
+          <span class="flip-hint">Tap to flip</span>
+        </div>
+        <div class="flip-back">
+          <span class="flip-back-label">Coach's Notes</span>
+          <h4>Muscle Retention Focus</h4>
+          <div class="flip-stats">
+            <div class="flip-stat"><div class="n">1650</div><div class="l">kcal</div></div>
+            <div class="flip-stat"><div class="n">100g</div><div class="l">protein</div></div>
+            <div class="flip-stat"><div class="n">2.5L</div><div class="l">water</div></div>
+          </div>
+          <p>Egg-forward breakfast and grilled chicken at dinner keep protein high while staying in a calorie deficit — so this client loses fat without losing hard-earned muscle.</p>
+          <div class="flip-close-hint">Tap to flip back</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <img src="images/wieiad-3.jpg" alt="Client meal plan example 3">
+          <span class="flip-tag">Balanced</span>
+          <span class="flip-hint">Tap to flip</span>
+        </div>
+        <div class="flip-back">
+          <span class="flip-back-label">Coach's Notes</span>
+          <h4>Everyday Sustainable Eating</h4>
+          <div class="flip-stats">
+            <div class="flip-stat"><div class="n">1800</div><div class="l">kcal</div></div>
+            <div class="flip-stat"><div class="n">100g</div><div class="l">protein</div></div>
+            <div class="flip-stat"><div class="n">2.5L</div><div class="l">water</div></div>
+          </div>
+          <p>Simple, home-cook-friendly meals — oatmeal, stir-fried noodles, fruit for snacks. Nothing fancy or restrictive, which is exactly why this client has stuck with it long-term.</p>
+          <div class="flip-close-hint">Tap to flip back</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <img src="images/wieiad-4.jpg" alt="Client meal plan example 4">
+          <span class="flip-tag">6 Small Meals</span>
+          <span class="flip-hint">Tap to flip</span>
+        </div>
+        <div class="flip-back">
+          <span class="flip-back-label">Coach's Notes</span>
+          <h4>Frequent Feeding Strategy</h4>
+          <div class="flip-stats">
+            <div class="flip-stat"><div class="n">1750</div><div class="l">kcal</div></div>
+            <div class="flip-stat"><div class="n">86g</div><div class="l">protein</div></div>
+            <div class="flip-stat"><div class="n">2.5L</div><div class="l">water</div></div>
+          </div>
+          <p>Six smaller meals spread through the day for a client with a busy, unpredictable schedule — protein shakes and bars fill the gaps between real meals without derailing consistency.</p>
+          <div class="flip-close-hint">Tap to flip back</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="cta-band reveal">
+  <span class="eyebrow">Ready When You Are</span>
+  <h2>Let's build your plate around your life.</h2>
+  <p>No crash diets, no guesswork — just a nutrition plan that actually fits how you eat.</p>
+  <a href="https://wa.me/919036147675?text=Hi!%20I%27d%20like%20to%20know%20more%20about%20nutrition%20coaching." class="btn-solid" target="_blank" rel="noopener">Book a Free Consultation</a>
+</section>
+
+<footer>
+  <div class="logo"><img src="logo.png" alt="Strong With Sherni logo">Strong With Sherni</div>
+  <div class="foot-bottom">© 2026 Strong With Sherni. All rights reserved. · Bengaluru, India</div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => revealObserver.observe(el));
+</script>
+
+</body>
+</html>
