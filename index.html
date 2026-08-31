@@ -163,9 +163,20 @@
   @media (max-width:960px){ .plans-grid{ grid-template-columns:repeat(2,1fr); gap:40px 22px; } }
   @media (max-width:560px){ .plans-grid{ grid-template-columns:1fr; } }
 
-  .testi-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:36px; }
-  .testi-card{ background:var(--cream); border:1px solid var(--line); border-radius:10px; padding:32px 28px; }
-  .testi-card q{ font-family:'Cormorant Garamond',serif; font-style:italic; font-size:19px; line-height:1.55; display:block; quotes:none; }
+  .testi-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:30px; }
+  .testi-card{ position:relative; background:var(--cream); border:1px solid var(--line); border-radius:14px; padding:30px 26px; overflow:hidden; opacity:0; transform:translateY(24px); transition:opacity .6s ease, transform .6s ease; }
+  .testi-grid.in-view .testi-card{ opacity:1; transform:translateY(0); }
+  .testi-grid.in-view .testi-card:nth-child(2){ transition-delay:.12s; }
+  .testi-grid.in-view .testi-card:nth-child(3){ transition-delay:.24s; }
+  .testi-grid.in-view .testi-card:nth-child(4){ transition-delay:.12s; }
+  .testi-grid.in-view .testi-card:nth-child(5){ transition-delay:.24s; }
+  .testi-grid.in-view .testi-card:nth-child(6){ transition-delay:.36s; }
+  .testi-card:hover{ transform:translateY(-4px) !important; box-shadow:0 16px 34px rgba(45,50,44,0.1); }
+  .testi-card::before{ content:"\201C"; position:absolute; top:-6px; right:16px; font-family:'Cormorant Garamond',serif; font-size:100px; color:var(--maroon); opacity:0.08; line-height:1; }
+  .testi-google{ display:flex; align-items:center; gap:8px; margin-bottom:12px; }
+  .testi-google svg{ width:18px; height:18px; }
+  .testi-stars{ color:#F5B400; font-size:13px; letter-spacing:1px; }
+  .testi-card q{ font-family:'Cormorant Garamond',serif; font-style:italic; font-size:17px; line-height:1.55; display:block; quotes:none; position:relative; z-index:1; }
   .testi-name{ margin-top:20px; font-weight:600; font-size:14px; color:var(--maroon); }
   @media (max-width:900px){ .testi-grid{ grid-template-columns:1fr; gap:24px; } }
 
@@ -390,18 +401,54 @@
     <span class="eyebrow">Real Words</span>
     <h2>What Clients Say</h2>
   </div>
-  <div class="testi-grid">
+  <div class="testi-grid reveal">
     <div class="testi-card">
-      <q>My experience with Vanshika has been nothing short of transformative. It wasn't solely about shedding weight — it was about gaining strength and knowledge.</q>
-      <div class="testi-name">— Gunjan</div>
+      <div class="testi-google">
+        <svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 6.1 29.6 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.5 15.9 18.9 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 6.1 29.6 4 24 4c-7.5 0-14 4.2-17.7 10.7z"/><path fill="#4CAF50" d="M24 44c5.5 0 10.4-1.9 14.2-5.1l-6.6-5.4C29.6 35.4 26.9 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.6 5.1C9.9 39.6 16.4 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.3 4.3-4.2 5.6l6.6 5.4C39.8 37.1 44 31 44 24c0-1.3-.1-2.7-.4-3.5z"/></svg>
+        <span class="testi-stars">★★★★★</span>
+      </div>
+      <q>I love Vanshika's energy and how practical and personalised her approach is. She's helping me become more efficient with my food choices while building habits that feel sustainable and realistic for the long term.</q>
+      <div class="testi-name">— Adrushta Hegde</div>
     </div>
     <div class="testi-card">
-      <q>Her program isn't just a plan; it's a lifestyle change. Weight loss, improved skin, hair, and even my 20-year-long migraines disappeared.</q>
-      <div class="testi-name">— Pratika Reva</div>
+      <div class="testi-google">
+        <svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 6.1 29.6 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.5 15.9 18.9 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 6.1 29.6 4 24 4c-7.5 0-14 4.2-17.7 10.7z"/><path fill="#4CAF50" d="M24 44c5.5 0 10.4-1.9 14.2-5.1l-6.6-5.4C29.6 35.4 26.9 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.6 5.1C9.9 39.6 16.4 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.3 4.3-4.2 5.6l6.6 5.4C39.8 37.1 44 31 44 24c0-1.3-.1-2.7-.4-3.5z"/></svg>
+        <span class="testi-stars">★★★★★</span>
+      </div>
+      <q>Vanshika genuinely cares about her clients and always takes the time to understand their individual needs. She understands women's bodies and how fitness needs can change over time — practical, supportive, and sustainable.</q>
+      <div class="testi-name">— Akshita Chandra</div>
     </div>
     <div class="testi-card">
-      <q>Through personalised workouts and nutrition tailored to my needs, I watched the numbers steadily decrease and muscles I hadn't seen in years emerge.</q>
-      <div class="testi-name">— Taffy</div>
+      <div class="testi-google">
+        <svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 6.1 29.6 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.5 15.9 18.9 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 6.1 29.6 4 24 4c-7.5 0-14 4.2-17.7 10.7z"/><path fill="#4CAF50" d="M24 44c5.5 0 10.4-1.9 14.2-5.1l-6.6-5.4C29.6 35.4 26.9 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.6 5.1C9.9 39.6 16.4 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.3 4.3-4.2 5.6l6.6 5.4C39.8 37.1 44 31 44 24c0-1.3-.1-2.7-.4-3.5z"/></svg>
+        <span class="testi-stars">★★★★★</span>
+      </div>
+      <q>If you want a coach who pushes you hard, keeps the vibes fun, and makes sure your plate is full of food you actually want to eat, Vanshika is your person! She's turned me into a macro-tracking wizard without making it feel like a chore.</q>
+      <div class="testi-name">— Manali Kakatkar</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-google">
+        <svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 6.1 29.6 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.5 15.9 18.9 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 6.1 29.6 4 24 4c-7.5 0-14 4.2-17.7 10.7z"/><path fill="#4CAF50" d="M24 44c5.5 0 10.4-1.9 14.2-5.1l-6.6-5.4C29.6 35.4 26.9 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.6 5.1C9.9 39.6 16.4 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.3 4.3-4.2 5.6l6.6 5.4C39.8 37.1 44 31 44 24c0-1.3-.1-2.7-.4-3.5z"/></svg>
+        <span class="testi-stars">★★★★★</span>
+      </div>
+      <q>Vanshika has been a great coach and an accountability buddy. She responds almost immediately when you need her, reminds of updates when you forget, and makes immediate changes when the plan isn't followed or something comes up.</q>
+      <div class="testi-name">— Bhavin Soni</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-google">
+        <svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 6.1 29.6 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.5 15.9 18.9 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 6.1 29.6 4 24 4c-7.5 0-14 4.2-17.7 10.7z"/><path fill="#4CAF50" d="M24 44c5.5 0 10.4-1.9 14.2-5.1l-6.6-5.4C29.6 35.4 26.9 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.6 5.1C9.9 39.6 16.4 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.3 4.3-4.2 5.6l6.6 5.4C39.8 37.1 44 31 44 24c0-1.3-.1-2.7-.4-3.5z"/></svg>
+        <span class="testi-stars">★★★★★</span>
+      </div>
+      <q>What sets Vanshika apart is not just the knowledge and expertise, but also the consistent support and encouragement. Every check-in feels motivating, and I never feel judged — only guided.</q>
+      <div class="testi-name">— Rachel Jude</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-google">
+        <svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 6.1 29.6 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.5 15.9 18.9 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 6.1 29.6 4 24 4c-7.5 0-14 4.2-17.7 10.7z"/><path fill="#4CAF50" d="M24 44c5.5 0 10.4-1.9 14.2-5.1l-6.6-5.4C29.6 35.4 26.9 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.6 5.1C9.9 39.6 16.4 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.3 4.3-4.2 5.6l6.6 5.4C39.8 37.1 44 31 44 24c0-1.3-.1-2.7-.4-3.5z"/></svg>
+        <span class="testi-stars">★★★★★</span>
+      </div>
+      <q>Vanshika has been my coach for the last two years or more. She has been very patient — I have achieved more than I had thought I could. I will call her my advisor, even a doctor in her field.</q>
+      <div class="testi-name">— Kanchan Mehra</div>
     </div>
   </div>
 </section>
