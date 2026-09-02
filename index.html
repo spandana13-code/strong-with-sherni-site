@@ -192,6 +192,16 @@
   footer ul{ list-style:none; }
   footer ul li{ margin-bottom:9px; font-size:13.5px; color:var(--taupe); }
   .foot-bottom{ display:flex; justify-content:space-between; padding-top:22px; font-size:12px; color:var(--taupe); flex-wrap:wrap; gap:8px; border-top:1px solid var(--line); }
+  footer ul li a{ color:var(--taupe); transition:color .2s ease; }
+  footer ul li a:hover{ color:var(--maroon); }
+
+  .nav-dropdown{ position:relative; }
+  .nav-dropdown > span{ cursor:pointer; opacity:0.75; }
+  .nav-dropdown:hover > span{ opacity:1; color:var(--teal); }
+  .nav-dropdown-menu{ position:absolute; top:28px; left:50%; transform:translateX(-50%) translateY(6px); background:var(--white); border:1px solid var(--line); border-radius:10px; padding:10px; min-width:200px; box-shadow:0 12px 30px rgba(45,50,44,0.14); opacity:0; visibility:hidden; transition:opacity .2s ease, transform .2s ease; z-index:60; }
+  .nav-dropdown:hover .nav-dropdown-menu{ opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
+  .nav-dropdown-menu a{ display:block; padding:9px 12px; border-radius:6px; font-size:13px; opacity:0.85; }
+  .nav-dropdown-menu a:hover{ background:var(--cream); opacity:1; }
 </style>
 </head>
 <body>
@@ -202,7 +212,15 @@
     <a href="#services">Services</a>
     <a href="#about">About</a>
     <a href="#transformations">Transformations</a>
-    <a href="rewire-challenge.html">Rewire Challenge</a>
+    <div class="nav-dropdown">
+      <span>Programs ▾</span>
+      <div class="nav-dropdown-menu">
+        <a href="individual-coaching.html">Individual Coaching</a>
+        <a href="buddy-program.html">Buddy Program</a>
+        <a href="pcos-coaching.html">PCOS Coaching</a>
+        <a href="rewire-challenge.html">Rewire Challenge</a>
+      </div>
+    </div>
     <a href="nutrition.html">Nutrition</a>
     <a href="blog.html">Blog</a>
     <a href="https://wa.me/919036147675?text=Hi!%20I%27d%20like%20to%20know%20more." target="_blank" rel="noopener">Contact</a>
@@ -467,15 +485,29 @@
     </div>
     <div>
       <h4>Explore</h4>
-      <ul><li>Services</li><li>About</li><li>Blog</li><li>Testimonials</li></ul>
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="nutrition.html">Nutrition</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
     </div>
     <div>
       <h4>Programs</h4>
-      <ul><li>Individual Coaching</li><li>Buddy Coaching</li><li>Rewire Challenge</li><li>PCOS Coaching</li></ul>
+      <ul>
+        <li><a href="individual-coaching.html">Individual Coaching</a></li>
+        <li><a href="buddy-program.html">Buddy Coaching</a></li>
+        <li><a href="rewire-challenge.html">Rewire Challenge</a></li>
+        <li><a href="pcos-coaching.html">PCOS Coaching</a></li>
+      </ul>
     </div>
     <div>
       <h4>Connect</h4>
-      <ul><li>WhatsApp</li><li>Instagram</li><li>Contact Form</li></ul>
+      <ul>
+        <li><a href="https://wa.me/919036147675" target="_blank" rel="noopener">WhatsApp</a></li>
+        <li><a href="https://instagram.com/strongwithshernii" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://wa.me/919036147675?text=Hi!%20I%27d%20like%20to%20know%20more." target="_blank" rel="noopener">Contact</a></li>
+      </ul>
     </div>
   </div>
   <div class="foot-bottom">
