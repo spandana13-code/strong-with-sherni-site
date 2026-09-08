@@ -48,7 +48,8 @@
   .plan-badge{ position:absolute; top:-14px; left:50%; transform:translateX(-50%); background:var(--maroon); color:var(--white); font-size:11.5px; font-weight:700; padding:6px 18px; border-radius:20px; white-space:nowrap; letter-spacing:0.03em; }
   .plan-card h3{ font-size:24px; font-weight:600; margin:8px 0 6px; }
   .plan-tagline{ color:var(--taupe); font-size:13.5px; margin-bottom:20px; }
-  .duration-row{ display:flex; justify-content:space-between; align-items:baseline; padding:10px 0; border-top:1px solid var(--line); font-size:14px; }
+  .duration-row{ display:flex; justify-content:space-between; align-items:baseline; padding:10px 0; border-top:1px solid var(--line); font-size:14px; transition:padding-left .2s ease, color .2s ease; }
+  a.duration-row:hover{ padding-left:6px; color:var(--maroon); cursor:pointer; }
   .duration-row:first-of-type{ border-top:none; }
   .duration-row b{ font-family:'Cormorant Garamond',serif; font-size:20px; color:var(--maroon); }
   .feature-list{ list-style:none; margin:24px 0; flex-grow:1; }
@@ -133,7 +134,7 @@
       <h3>Student</h3>
       <div class="plan-tagline">Get started together with the essentials</div>
       <p style="font-size:13px; color:var(--taupe); line-height:1.5; margin-bottom:18px;">Best if you and your buddy are just starting out and want a solid shared plan with regular check-ins.</p>
-      <div class="duration-row"><span>3 Months</span><b>₹24,499</b></div>
+      <a href="signup.html?plan=Buddy%20Coaching%20-%20Student&duration=3%20Months&price=24499" class="duration-row" style="display:flex; text-decoration:none; color:inherit;"><span>3 Months</span><b>₹24,499</b></a>
       <ul class="feature-list">
         <li><span class="icon-wrap yes"><svg class="icon icon-yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span> Check-ins 4 times a week</li>
         <li><span class="icon-wrap yes"><svg class="icon icon-yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span> 1 coaching call</li>
@@ -141,7 +142,7 @@
         <li class="no"><span class="icon-wrap no"><svg class="icon icon-no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M18 6L6 18M6 6l12 12"/></svg></span> Daily accountability</li>
         <li class="no"><span class="icon-wrap no"><svg class="icon icon-no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M18 6L6 18M6 6l12 12"/></svg></span> Monthly phase changes</li>
       </ul>
-      <a href="index.html#contact" class="plan-cta">Get Started</a>
+      <a href="signup.html?plan=Buddy%20Coaching%20-%20Student&duration=3%20Months&price=24499" class="plan-cta">Get Started</a>
     </div>
 
     <!-- ADVANCED - FEATURED -->
@@ -150,9 +151,9 @@
       <h3>Advanced</h3>
       <div class="plan-tagline">Real accountability, real structure</div>
       <p style="font-size:13px; color:var(--taupe); line-height:1.5; margin-bottom:18px;">Ideal if you and your buddy know you need daily check-ins to stay consistent, with your plans evolving together.</p>
-      <div class="duration-row"><span>4 Months</span><b>₹48,499</b></div>
-      <div class="duration-row"><span>6 Months</span><b>₹70,999</b></div>
-      <div class="duration-row"><span>12 Months</span><b>₹1,15,000</b></div>
+      <a href="signup.html?plan=Buddy%20Coaching%20-%20Advanced&duration=4%20Months&price=48499" class="duration-row" style="display:flex; text-decoration:none; color:inherit;"><span>4 Months</span><b>₹48,499</b></a>
+      <a href="signup.html?plan=Buddy%20Coaching%20-%20Advanced&duration=6%20Months&price=70999" class="duration-row" style="display:flex; text-decoration:none; color:inherit;"><span>6 Months</span><b>₹70,999</b></a>
+      <a href="signup.html?plan=Buddy%20Coaching%20-%20Advanced&duration=12%20Months&price=115000" class="duration-row" style="display:flex; text-decoration:none; color:inherit;"><span>12 Months</span><b>₹1,15,000</b></a>
       <ul class="feature-list">
         <li><span class="icon-wrap yes"><svg class="icon icon-yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span> Daily check-ins</li>
         <li><span class="icon-wrap yes"><svg class="icon icon-yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span> Personalised nutrition &amp; training plan</li>
@@ -162,7 +163,7 @@
         <li class="no"><span class="icon-wrap no"><svg class="icon icon-no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M18 6L6 18M6 6l12 12"/></svg></span> Unlimited doubt-clearing calls</li>
         <li class="no"><span class="icon-wrap no"><svg class="icon icon-no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M18 6L6 18M6 6l12 12"/></svg></span> Sport-specific personalised programming</li>
       </ul>
-      <a href="index.html#contact" class="plan-cta">Get Started</a>
+      <a href="signup.html?plan=Buddy%20Coaching%20-%20Advanced&duration=4%20Months&price=48499" class="plan-cta">Get Started</a>
     </div>
 
     <!-- ELITE -->
@@ -170,9 +171,9 @@
       <h3>Elite</h3>
       <div class="plan-tagline">Maximum support, fully hands-on</div>
       <p style="font-size:13px; color:var(--taupe); line-height:1.5; margin-bottom:6px;">For buddy pairs who want the most hands-on experience possible — closest to having me as your dedicated coach.</p>
-      <div class="duration-row"><span>4 Months</span><b>₹61,999</b></div>
-      <div class="duration-row"><span>6 Months</span><b>₹99,999</b></div>
-      <div class="duration-row"><span>12 Months</span><b>₹1,40,000</b></div>
+      <a href="signup.html?plan=Buddy%20Coaching%20-%20Elite&duration=4%20Months&price=61999" class="duration-row" style="display:flex; text-decoration:none; color:inherit;"><span>4 Months</span><b>₹61,999</b></a>
+      <a href="signup.html?plan=Buddy%20Coaching%20-%20Elite&duration=6%20Months&price=99999" class="duration-row" style="display:flex; text-decoration:none; color:inherit;"><span>6 Months</span><b>₹99,999</b></a>
+      <a href="signup.html?plan=Buddy%20Coaching%20-%20Elite&duration=12%20Months&price=140000" class="duration-row" style="display:flex; text-decoration:none; color:inherit;"><span>12 Months</span><b>₹1,40,000</b></a>
       <div class="elite-note">Everything in Advanced, plus:</div>
       <ul class="feature-list">
         <li><span class="icon-wrap yes"><svg class="icon icon-yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span> Deload weeks explained &amp; programmed</li>
@@ -181,7 +182,7 @@
         <li><span class="icon-wrap yes"><svg class="icon icon-yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span> Sport-specific personalised programming (swimming, weightlifting, boxing, calisthenics, and more)</li>
         <li><span class="icon-wrap yes"><svg class="icon icon-yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span> 2 post-program support calls</li>
       </ul>
-      <a href="index.html#contact" class="plan-cta">Get Started</a>
+      <a href="signup.html?plan=Buddy%20Coaching%20-%20Elite&duration=4%20Months&price=61999" class="plan-cta">Get Started</a>
     </div>
 
   </div>

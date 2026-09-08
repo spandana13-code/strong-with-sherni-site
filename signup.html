@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up — Strong With Sherni</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<style>
+  :root{
+    --ink:#2D322C; --cream:#FAF9F3; --white:#FFFFFF;
+    --maroon:#7B0237; --teal:#1F4037; --coral:#FF833B; --mustard:#9C9C1E;
+    --taupe:#6B6459; --line:rgba(45,50,44,0.13);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{ font-family:'Work Sans', sans-serif; background:var(--cream); color:var(--ink); min-height:100vh; }
+  h1,h2,h3{ font-family:'Cormorant Garamond', serif; }
+  a{ text-decoration:none; color:inherit; }
+
+  nav{ display:flex; align-items:center; justify-content:space-between; padding:20px 6vw; border-bottom:1px solid var(--line); background:var(--white); }
+  .logo{ display:flex; align-items:center; gap:12px; font-family:'Cormorant Garamond',serif; font-weight:600; font-size:21px; }
+  .logo img{ height:44px; width:44px; object-fit:contain; }
+
+  .signup-wrap{ max-width:480px; margin:0 auto; padding:50px 6vw 80px; }
+  .plan-summary{ background:var(--white); border:1px solid var(--line); border-radius:16px; padding:26px 24px; margin-bottom:28px; }
+  .plan-summary .eyebrow{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; font-weight:700; color:var(--coral); }
+  .plan-summary h2{ font-size:24px; font-weight:600; margin-top:8px; }
+  .plan-summary .duration{ color:var(--taupe); font-size:13.5px; margin-top:4px; }
+  .plan-summary .price{ font-family:'Cormorant Garamond',serif; font-size:34px; font-weight:700; color:var(--maroon); margin-top:14px; }
+  .plan-summary .price span{ font-size:14px; color:var(--taupe); font-weight:400; font-family:'Work Sans',sans-serif; }
+
+  .signup-form h3{ font-size:20px; font-weight:600; margin-bottom:16px; }
+  .field{ margin-bottom:16px; }
+  .field label{ display:block; font-size:12.5px; font-weight:600; color:var(--taupe); margin-bottom:6px; }
+  .field input{ width:100%; padding:13px 14px; border:1px solid var(--line); border-radius:10px; font-family:'Work Sans',sans-serif; font-size:14.5px; background:var(--white); }
+  .field input:focus{ outline:none; border-color:var(--teal); }
+  .error-msg{ background:rgba(123,2,55,0.08); color:var(--maroon); font-size:13px; padding:10px 14px; border-radius:8px; margin-bottom:16px; display:none; }
+
+  .btn-pay{ width:100%; background:var(--maroon); color:var(--white); border:none; padding:16px; border-radius:28px; font-weight:700; font-size:15px; cursor:pointer; font-family:'Work Sans',sans-serif; transition:transform .2s ease, opacity .2s ease; }
+  .btn-pay:hover{ transform:translateY(-2px); }
+  .btn-pay:disabled{ opacity:0.6; cursor:not-allowed; transform:none; }
+
+  .secure-note{ text-align:center; font-size:12px; color:var(--taupe); margin-top:14px; }
+
+  .success-box{ display:none; background:var(--white); border:1px solid var(--line); border-radius:16px; padding:40px 28px; text-align:center; }
+  .success-box .check{ font-size:44px; }
+  .success-box h2{ font-size:24px; font-weight:600; margin-top:12px; }
+  .success-box p{ color:var(--taupe); font-size:14px; margin-top:10px; line-height:1.6; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><img src="logo.png" alt="Strong With Sherni logo">Strong With Sherni</div>
+</nav>
+
+<div class="signup-wrap">
+
+  <div class="plan-summary">
+    <span class="eyebrow">Your Selected Plan</span>
+    <h2 id="plan-name">Loading plan…</h2>
+    <div class="duration" id="plan-duration"></div>
+    <div class="price" id="plan-price"></div>
+  </div>
+
+  <div class="signup-form" id="signup-form">
+    <h3>Your Details</h3>
+    <div class="error-msg" id="error-msg"></div>
+    <div class="field">
+      <label for="f-name">Full Name</label>
+      <input type="text" id="f-name" placeholder="Your full name">
+    </div>
+    <div class="field">
+      <label for="f-email">Email</label>
+      <input type="email" id="f-email" placeholder="you@example.com">
+    </div>
+    <div class="field">
+      <label for="f-phone">Phone Number (for WhatsApp)</label>
+      <input type="tel" id="f-phone" placeholder="+91 XXXXX XXXXX">
+    </div>
+    <button class="btn-pay" id="pay-btn" onclick="startPayment()">Pay & Confirm Enrollment</button>
+    <div class="secure-note">🔒 Secure payment powered by Razorpay</div>
+  </div>
+
+  <div class="success-box" id="success-box">
+    <div class="check">✅</div>
+    <h2>You're In!</h2>
+    <p>Payment received and your enrollment is confirmed. Vanshika will reach out on WhatsApp shortly to get you started.</p>
+  </div>
+
+</div>
+
+<script>
+  // Read plan details from the URL, e.g. signup.html?plan=Individual%20Coaching&duration=3%20Months&price=19000
+  const params = new URLSearchParams(window.location.search);
+  const planName = params.get('plan') || 'Coaching Program';
+  const planDuration = params.get('duration') || '';
+  const planPrice = Number(params.get('price')) || 0;
+
+  document.getElementById('plan-name').textContent = planName;
+  document.getElementById('plan-duration').textContent = planDuration;
+  document.getElementById('plan-price').innerHTML = `₹${planPrice.toLocaleString('en-IN')} <span>one-time</span>`;
+
+  // IMPORTANT: replace with your actual Razorpay Key ID (safe to expose publicly, this is NOT the secret key)
+  const RAZORPAY_KEY_ID = "YOUR_RAZORPAY_KEY_ID";
+
+  function showError(msg){
+    const el = document.getElementById('error-msg');
+    el.textContent = msg;
+    el.style.display = 'block';
+  }
+
+  async function startPayment(){
+    const name = document.getElementById('f-name').value.trim();
+    const email = document.getElementById('f-email').value.trim();
+    const phone = document.getElementById('f-phone').value.trim();
+
+    if(!name || !email || !phone){
+      showError('Please fill in your name, email, and phone number.');
+      return;
+    }
+    document.getElementById('error-msg').style.display = 'none';
+
+    const payBtn = document.getElementById('pay-btn');
+    payBtn.disabled = true;
+    payBtn.textContent = 'Preparing payment…';
+
+    try {
+      // Step 1: ask our backend to create a Razorpay order
+      const orderRes = await fetch('/api/create-order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ amount: planPrice * 100, planName })
+      });
+      const order = await orderRes.json();
+
+      if(!order.id){
+        showError('Could not start payment. Please try again or contact us on WhatsApp.');
+        payBtn.disabled = false;
+        payBtn.textContent = 'Pay & Confirm Enrollment';
+        return;
+      }
+
+      // Step 2: open Razorpay checkout
+      const options = {
+        key: RAZORPAY_KEY_ID,
+        amount: order.amount,
+        currency: "INR",
+        name: "Strong With Sherni",
+        description: planName,
+        order_id: order.id,
+        prefill: { name, email, contact: phone },
+        theme: { color: "#7B0237" },
+        handler: async function(response){
+          payBtn.textContent = 'Confirming…';
+          // Step 3: verify payment + auto-create client record
+          const verifyRes = await fetch('/api/verify-payment', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              razorpay_order_id: response.razorpay_order_id,
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_signature: response.razorpay_signature,
+              customer: { name, email, phone, plan: planName, duration: planDuration }
+            })
+          });
+          const result = await verifyRes.json();
+          if(result.success){
+            document.getElementById('signup-form').style.display = 'none';
+            document.getElementById('success-box').style.display = 'block';
+          } else {
+            showError('Payment succeeded but confirmation failed. Please contact us on WhatsApp with your payment ID: ' + response.razorpay_payment_id);
+          }
+        },
+        modal: {
+          ondismiss: function(){
+            payBtn.disabled = false;
+            payBtn.textContent = 'Pay & Confirm Enrollment';
+          }
+        }
+      };
+
+      const rzp = new Razorpay(options);
+      rzp.open();
+      payBtn.disabled = false;
+      payBtn.textContent = 'Pay & Confirm Enrollment';
+
+    } catch(err){
+      showError('Something went wrong. Please try again or contact us on WhatsApp.');
+      payBtn.disabled = false;
+      payBtn.textContent = 'Pay & Confirm Enrollment';
+    }
+  }
+</script>
+
+</body>
+</html>
