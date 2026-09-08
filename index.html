@@ -202,6 +202,22 @@
   .nav-dropdown:hover .nav-dropdown-menu{ opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
   .nav-dropdown-menu a{ display:block; padding:9px 12px; border-radius:6px; font-size:13px; opacity:0.85; }
   .nav-dropdown-menu a:hover{ background:var(--cream); opacity:1; }
+
+  .launch-popup-overlay{ display:none; position:fixed; inset:0; background:rgba(45,50,44,0.75); z-index:300; align-items:center; justify-content:center; padding:20px; }
+  .launch-popup{ background:var(--cream); border-radius:18px; max-width:420px; width:100%; padding:38px 32px; position:relative; text-align:center; box-shadow:0 30px 70px rgba(0,0,0,0.3); }
+  .launch-popup-close{ position:absolute; top:16px; right:18px; font-size:24px; color:var(--taupe); cursor:pointer; line-height:1; }
+  .launch-popup .badge{ display:inline-block; background:var(--coral); color:var(--white); font-size:11px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; padding:6px 14px; border-radius:16px; margin-bottom:14px; }
+  .launch-popup h3{ font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:600; line-height:1.2; }
+  .launch-popup p{ color:var(--taupe); font-size:14px; margin-top:10px; line-height:1.55; }
+  .launch-popup .fee-line{ font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:700; color:var(--maroon); margin-top:14px; }
+  .launch-popup .fee-line span{ font-size:13px; color:var(--taupe); font-weight:400; font-family:'Work Sans',sans-serif; }
+  .launch-countdown{ margin:16px 0; font-size:13px; color:var(--maroon); font-weight:700; background:rgba(123,2,55,0.08); padding:10px; border-radius:10px; }
+  .launch-popup .btn-solid{ width:100%; margin-top:6px; border:none; cursor:pointer; font-family:'Work Sans',sans-serif; display:block; text-align:center; padding:15px; border-radius:28px; background:var(--maroon); color:var(--white); font-weight:700; font-size:14px; }
+  .launch-popup .skip-link{ display:block; margin-top:14px; font-size:12px; color:var(--taupe); text-decoration:underline; cursor:pointer; background:none; border:none; }
+
+  .launch-float-btn{ display:none; align-items:center; gap:8px; position:fixed; bottom:24px; right:24px; background:var(--maroon); color:var(--white); padding:14px 22px; border-radius:30px; font-size:13px; font-weight:700; box-shadow:0 10px 30px rgba(123,2,55,0.35); cursor:pointer; z-index:250; transition:transform .2s ease, box-shadow .2s ease; border:none; font-family:'Work Sans',sans-serif; }
+  .launch-float-btn:hover{ transform:translateY(-3px); box-shadow:0 14px 36px rgba(123,2,55,0.45); }
+  @media (max-width:600px){ .launch-float-btn{ bottom:16px; right:16px; padding:12px 18px; font-size:12px; } }
 </style>
 </head>
 <body>
@@ -588,6 +604,59 @@
   function certNext(){ certIndex = (certIndex + 1) % certImgs.length; showCertImg(); }
   function certPrev(){ certIndex = (certIndex - 1 + certImgs.length) % certImgs.length; showCertImg(); }
   function closeCert(){ document.getElementById('cert-modal').style.display = 'none'; }
+</script>
+
+<div class="launch-popup-overlay" id="launch-popup-overlay">
+  <div class="launch-popup">
+    <span class="launch-popup-close" onclick="closeLaunchPopup()">&times;</span>
+    <span class="badge">Launch Special</span>
+    <h3>Try a 1-on-1 session before you commit</h3>
+    <p>To celebrate our launch, book a <strong>1-hour 1-on-1 session</strong> for a small fee — and if you join a full program afterward, we'll add <strong>1 extra day free</strong> to it.</p>
+    <div class="fee-line">₹199 <span>for 1 hour, 1-on-1</span></div>
+    <div class="launch-countdown" id="launch-countdown"></div>
+    <a href="signup.html?plan=1-on-1%20Trial%20Session&duration=1%20Hour&price=199" class="btn-solid">Book My Trial Session</a>
+    <span class="skip-link" onclick="closeLaunchPopup()">Maybe later</span>
+  </div>
+</div>
+
+<button class="launch-float-btn" id="launch-float-btn" onclick="openLaunchPopup()">🎉 Launch Offer</button>
+
+<script>
+  // Launch offer runs 15 days starting from this date
+  const LAUNCH_DATE = new Date('2026-09-28');
+  const OFFER_DAYS = 15;
+
+  (function initLaunchPopup(){
+    const offerEnd = new Date(LAUNCH_DATE);
+    offerEnd.setDate(offerEnd.getDate() + OFFER_DAYS);
+    const now = new Date();
+    const msLeft = offerEnd - now;
+    const daysLeft = Math.ceil(msLeft / (1000*60*60*24));
+
+    if (daysLeft <= 0) return; // offer expired, nothing shows at all
+
+    const countdownText = daysLeft === 1 ? '⏳ Only 1 day left for this offer!' : `⏳ ${daysLeft} days left for this offer!`;
+    document.getElementById('launch-countdown').textContent = countdownText;
+
+    // Floating button always shows (while offer is active), regardless of whether the popup was dismissed
+    document.getElementById('launch-float-btn').style.display = 'flex';
+
+    // Auto-popup only shows once per visit, if not already dismissed this session
+    if (!sessionStorage.getItem('launchPopupClosed')) {
+      setTimeout(() => {
+        document.getElementById('launch-popup-overlay').style.display = 'flex';
+      }, 2000);
+    }
+  })();
+
+  function closeLaunchPopup(){
+    document.getElementById('launch-popup-overlay').style.display = 'none';
+    sessionStorage.setItem('launchPopupClosed', '1');
+  }
+
+  function openLaunchPopup(){
+    document.getElementById('launch-popup-overlay').style.display = 'flex';
+  }
 </script>
 
 </body>

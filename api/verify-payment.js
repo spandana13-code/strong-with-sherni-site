@@ -35,9 +35,11 @@ export default async function handler(req, res) {
     // Map plan duration text (e.g. "3 Months") to whatever your admin dashboard duration field expects.
     // Adjust these values if your admin dashboard uses different labels.
     const durationMap = {
-      '3 Months': '3month',
-      '6 Months': '6month',
-      '4 Months': '4month'
+      '3 Months': '3 months',
+      '4 Months': '4 months',
+      '6 Months': '6 months',
+      '12 Months': '12 months',
+      '1 Hour': '1 hour'
     };
     const durationValue = durationMap[customer.duration] || customer.duration;
 
@@ -57,14 +59,14 @@ export default async function handler(req, res) {
         join_date: today,
         payment_date: today,
         duration: durationValue,
-        phase: 'onboarding',
+        phase: customer.plan === '1-on-1 Trial Session' ? 'Trial' : 'Phase 1',
         pause_days: 0,
         extension_days: 0,
         referral_days: 0,
         payment_status: 'paid',
         intro_done: false,
         onboarding_done: false,
-        notes: `${customer.location ? 'Location: ' + customer.location + '. ' : ''}Auto-created via Razorpay signup. Plan: ${customer.plan}. Payment ID: ${razorpay_payment_id}`
+        notes: `${customer.location ? 'Location: ' + customer.location + '. ' : ''}${customer.plan === '1-on-1 Trial Session' ? '⭐ TRIAL SESSION — if they join a full program, remember to add +1 day via Extension. ' : ''}Auto-created via Razorpay signup. Plan: ${customer.plan}. Payment ID: ${razorpay_payment_id}`
       })
     });
 

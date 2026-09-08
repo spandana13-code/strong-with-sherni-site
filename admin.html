@@ -166,10 +166,10 @@
       <div class="field"><label>Join date *</label><input id="f-join" type="date"></div>
       <div class="field"><label>Payment date</label><input id="f-payment" type="date"></div>
       <div class="field"><label>Duration</label>
-        <select id="f-duration"><option>3 months</option><option>6 months</option><option>12 months</option></select>
+        <select id="f-duration"><option>3 months</option><option>4 months</option><option>6 months</option><option>12 months</option><option>1 hour</option></select>
       </div>
       <div class="field"><label>Current phase</label>
-        <select id="f-phase"><option>Phase 1</option><option>Phase 2</option><option>Phase 3</option><option>Phase 4</option></select>
+        <select id="f-phase"><option>Phase 1</option><option>Phase 2</option><option>Phase 3</option><option>Phase 4</option><option>Trial</option></select>
       </div>
       <div class="field"><label>Pause days</label><input id="f-pause" type="number" min="0" value="0"></div>
       <div class="field"><label>Extension days</label><input id="f-ext" type="number" min="0" value="0"></div>
@@ -203,7 +203,7 @@
   const SUPABASE_URL = "https://mvhuwsmcsubfdowukoyn.supabase.co";
   const SUPABASE_KEY = "sb_publishable_ZBLQx4UlBiN3GWSzsZtYTg_tjNimgzE";
   const ADMIN_CREDS = { username: "sherni", password: "admin123" };
-  const DURATIONS = { "3 months": 90, "6 months": 180, "12 months": 365 };
+  const DURATIONS = { "3 months": 90, "4 months": 120, "6 months": 180, "12 months": 365, "1 hour": 1 };
   const STRIPE_COLOR = { critical:"#DC2626", warning:"#D97706", soon:"#B0576F", active:"#4D8A1F", expired:"#9CA3AF", unknown:"#D1D5DB" };
 
   const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
