@@ -30,8 +30,15 @@
   .page-hero{ background:var(--cream); text-align:center; padding:80px 8vw 0; }
   .page-hero h1{ font-size:clamp(32px,4.2vw,48px); font-weight:600; margin-top:14px; line-height:1.15; }
   .page-hero p{ margin-top:16px; color:var(--taupe); max-width:600px; margin-left:auto; margin-right:auto; font-size:16px; line-height:1.6; }
-  .hero-photo-strip{ margin-top:44px; aspect-ratio:21/7; max-width:1100px; margin-left:auto; margin-right:auto; border-radius:14px; overflow:hidden; background:var(--white); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; transform:translateY(50%); }
-  .hero-photo-strip .photo-placeholder{ color:var(--taupe); font-size:13px; font-weight:600; }
+    .hero-stat-strip{ margin-top:44px; max-width:1000px; margin-left:auto; margin-right:auto; border-radius:14px; overflow:hidden; background:var(--white); border:1px solid var(--line); display:grid; grid-template-columns:repeat(4,1fr); transform:translateY(50%); box-shadow:0 20px 50px rgba(45,50,44,0.08); }
+  .hero-stat{ padding:28px 16px; text-align:center; border-right:1px solid var(--line); }
+  .hero-stat:last-child{ border-right:none; }
+  .hero-stat .n{ font-family:'Cormorant Garamond',serif; font-size:27px; font-weight:700; color:var(--maroon); line-height:1; }
+  .hero-stat .l{ font-size:11px; color:var(--taupe); text-transform:uppercase; letter-spacing:0.04em; margin-top:6px; }
+  .hero-stat.highlight{ background:var(--maroon); }
+  .hero-stat.highlight .n{ color:var(--white); }
+  .hero-stat.highlight .l{ color:rgba(255,255,255,0.85); }
+  @media (max-width:700px){ .hero-stat-strip{ grid-template-columns:repeat(2,1fr); transform:translateY(30%); } .hero-stat{ border-bottom:1px solid var(--line); } }
 
   section{ padding:130px 6vw 90px; }
   section + section{ padding-top:90px; }
@@ -115,8 +122,11 @@
   <span class="eyebrow">Hormone &amp; Women's Health</span>
   <h1>PCOS, Postpartum &amp; Fertility Coaching</h1>
   <p>A focused coaching program for women navigating PCOS, postpartum recovery, or fertility-related lifestyle changes — built around your cycle, your body, and what you're actually going through.</p>
-  <div class="hero-photo-strip">
-    <div class="photo-placeholder">Coaching photo (women's health focused)</div>
+    <div class="hero-stat-strip">
+    <div class="hero-stat"><div class="n">4</div><div class="l">Month Program</div></div>
+    <div class="hero-stat"><div class="n">Hormone</div><div class="l">&amp; Gut Focus</div></div>
+    <div class="hero-stat"><div class="n">1-on-1</div><div class="l">Goal Mapping</div></div>
+    <div class="hero-stat highlight"><div class="n">4.9★</div><div class="l">Client Rating</div></div>
   </div>
 </section>
 
