@@ -79,6 +79,10 @@
       <label for="f-phone">Phone Number (for WhatsApp)</label>
       <input type="tel" id="f-phone" placeholder="+91 XXXXX XXXXX">
     </div>
+    <div class="field">
+      <label for="f-location">Location / City</label>
+      <input type="text" id="f-location" placeholder="e.g. Bengaluru">
+    </div>
     <button class="btn-pay" id="pay-btn" onclick="startPayment()">Pay & Confirm Enrollment</button>
     <div class="secure-note">🔒 Secure payment powered by Razorpay</div>
   </div>
@@ -115,6 +119,7 @@
     const name = document.getElementById('f-name').value.trim();
     const email = document.getElementById('f-email').value.trim();
     const phone = document.getElementById('f-phone').value.trim();
+    const location = document.getElementById('f-location').value.trim();
 
     if(!name || !email || !phone){
       showError('Please fill in your name, email, and phone number.');
@@ -162,7 +167,7 @@
               razorpay_order_id: response.razorpay_order_id,
               razorpay_payment_id: response.razorpay_payment_id,
               razorpay_signature: response.razorpay_signature,
-              customer: { name, email, phone, plan: planName, duration: planDuration }
+              customer: { name, email, phone, location, plan: planName, duration: planDuration }
             })
           });
           const result = await verifyRes.json();

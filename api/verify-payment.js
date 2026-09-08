@@ -64,7 +64,7 @@ export default async function handler(req, res) {
         payment_status: 'paid',
         intro_done: false,
         onboarding_done: false,
-        notes: `Auto-created via Razorpay signup. Plan: ${customer.plan}. Payment ID: ${razorpay_payment_id}`
+        notes: `${customer.location ? 'Location: ' + customer.location + '. ' : ''}Auto-created via Razorpay signup. Plan: ${customer.plan}. Payment ID: ${razorpay_payment_id}`
       })
     });
 
