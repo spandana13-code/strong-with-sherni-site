@@ -21,6 +21,11 @@
   nav{ display:flex; align-items:center; justify-content:space-between; padding:20px 6vw; border-bottom:1px solid var(--line); background:var(--white); }
   .logo{ display:flex; align-items:center; gap:12px; font-family:'Cormorant Garamond',serif; font-weight:600; font-size:21px; }
   .logo img{ height:44px; width:44px; object-fit:contain; }
+  @media (max-width:420px){
+    .logo{ font-size:16px; gap:8px; }
+    .logo img{ height:34px; width:34px; }
+    .signup-wrap{ padding-top:34px; }
+  }
 
   .signup-wrap{ max-width:480px; margin:0 auto; padding:50px 6vw 80px; }
   .plan-summary{ background:var(--white); border:1px solid var(--line); border-radius:16px; padding:26px 24px; margin-bottom:28px; }
@@ -33,7 +38,7 @@
   .signup-form h3{ font-size:20px; font-weight:600; margin-bottom:16px; }
   .field{ margin-bottom:16px; }
   .field label{ display:block; font-size:12.5px; font-weight:600; color:var(--taupe); margin-bottom:6px; }
-  .field input{ width:100%; padding:13px 14px; border:1px solid var(--line); border-radius:10px; font-family:'Work Sans',sans-serif; font-size:14.5px; background:var(--white); }
+  .field input{ width:100%; padding:13px 14px; border:1px solid var(--line); border-radius:10px; font-family:'Work Sans',sans-serif; font-size:16px; background:var(--white); }
   .field input:focus{ outline:none; border-color:var(--teal); }
   .error-msg{ background:rgba(123,2,55,0.08); color:var(--maroon); font-size:13px; padding:10px 14px; border-radius:8px; margin-bottom:16px; display:none; }
 

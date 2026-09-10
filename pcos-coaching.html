@@ -3,95 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PCOS, Postpartum &amp; Fertility Coaching — Strong With Sherni</title>
+<title>Nutrition — Strong With Sherni</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --ink:#2D322C; --cream:#FAF9F3; --white:#FFFFFF;
     --maroon:#7B0237; --teal:#1F4037; --coral:#FF833B; --mustard:#9C9C1E;
     --taupe:#6B6459; --line:rgba(45,50,44,0.13);
   }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  body{ font-family:'Work Sans', sans-serif; background:var(--white); color:var(--ink); }
-  h1,h2,h3{ font-family:'Cormorant Garamond', serif; }
+  *{box-sizing:border-box;}
+  body{ font-family:'Work Sans', sans-serif; background:var(--white); color:var(--ink); margin:0; overflow-x:hidden; }
+  h1,h2,h3{ font-family:'Cormorant Garamond', serif; margin:0; }
   a{ text-decoration:none; color:inherit; }
+  img{ max-width:100%; display:block; }
   .eyebrow{ font-size:12px; letter-spacing:0.16em; text-transform:uppercase; font-weight:600; color:var(--coral); }
 
   nav{ display:flex; align-items:center; justify-content:space-between; padding:20px 6vw; border-bottom:1px solid var(--line); position:sticky; top:0; background:rgba(255,255,255,0.92); backdrop-filter:blur(6px); z-index:50; }
   .logo{ display:flex; align-items:center; gap:12px; font-family:'Cormorant Garamond',serif; font-weight:600; font-size:21px; }
   .logo img{ height:52px; width:52px; object-fit:contain; }
-  .nav-links{ display:flex; gap:30px; font-size:13.5px; font-weight:500; }
+  .nav-links{ display:flex; gap:28px; font-size:13.5px; font-weight:500; }
   .nav-links a{ opacity:0.75; }
   .nav-links a.active, .nav-links a:hover{ opacity:1; color:var(--teal); }
   .nav-cta{ background:var(--maroon); color:var(--white); padding:10px 22px; border-radius:24px; font-size:13px; font-weight:600; }
-  @media (max-width:960px){ .nav-links{ display:none; } }
-
-  .page-hero{ background:var(--cream); text-align:center; padding:80px 8vw 0; }
-  .page-hero h1{ font-size:clamp(32px,4.2vw,48px); font-weight:600; margin-top:14px; line-height:1.15; }
-  .page-hero p{ margin-top:16px; color:var(--taupe); max-width:600px; margin-left:auto; margin-right:auto; font-size:16px; line-height:1.6; }
-    .hero-stat-strip{ margin-top:44px; max-width:1000px; margin-left:auto; margin-right:auto; border-radius:14px; overflow:hidden; background:var(--white); border:1px solid var(--line); display:grid; grid-template-columns:repeat(4,1fr); transform:translateY(50%); box-shadow:0 20px 50px rgba(45,50,44,0.08); }
-  .hero-stat{ padding:28px 16px; text-align:center; border-right:1px solid var(--line); }
-  .hero-stat:last-child{ border-right:none; }
-  .hero-stat .n{ font-family:'Cormorant Garamond',serif; font-size:27px; font-weight:700; color:var(--maroon); line-height:1; }
-  .hero-stat .l{ font-size:11px; color:var(--taupe); text-transform:uppercase; letter-spacing:0.04em; margin-top:6px; }
-  .hero-stat.highlight{ background:var(--maroon); }
-  .hero-stat.highlight .n{ color:var(--white); }
-  .hero-stat.highlight .l{ color:rgba(255,255,255,0.85); }
-  @media (max-width:700px){ .hero-stat-strip{ grid-template-columns:repeat(2,1fr); transform:translateY(30%); } .hero-stat{ border-bottom:1px solid var(--line); } }
-
-  section{ padding:130px 6vw 90px; }
-  section + section{ padding-top:90px; }
-  .section-head{ max-width:640px; margin:0 auto 48px; text-align:center; }
-  .section-head h2{ font-size:clamp(28px,3.4vw,38px); font-weight:600; margin-top:10px; }
-  .section-head p{ margin-top:12px; color:var(--taupe); font-size:15.5px; line-height:1.6; }
-
-  .help-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; max-width:1100px; margin:0 auto; }
-  .help-tile{ background:var(--cream); border-radius:12px; padding:26px 20px; text-align:center; }
-  .help-icon{ width:44px; height:44px; border-radius:50%; background:var(--teal); color:var(--white); display:flex; align-items:center; justify-content:center; margin:0 auto 14px; font-size:18px; }
-  .help-tile h4{ font-size:15px; font-weight:700; margin-bottom:4px; }
-  .help-tile p{ font-size:12.5px; color:var(--taupe); line-height:1.4; }
-  @media (max-width:860px){ .help-grid{ grid-template-columns:repeat(2,1fr); } }
-
-  .disclaimer{ max-width:700px; margin:40px auto 0; background:var(--white); border:1px solid var(--line); border-left:3px solid var(--coral); border-radius:8px; padding:18px 22px; font-size:13px; color:var(--taupe); line-height:1.6; }
-
-  .badges-row{ display:flex; align-items:center; justify-content:center; gap:36px; flex-wrap:wrap; padding:10px 6vw 0; }
-  .badges-row span{ font-weight:700; color:var(--taupe); font-size:13.5px; }
-
-  .price-wrap{ max-width:480px; margin:0 auto; }
-  .price-card{ background:var(--white); border:2px solid var(--maroon); border-radius:18px; padding:40px 34px; box-shadow:0 14px 34px rgba(123,2,55,0.1); text-align:center; }
-  .price-card h3{ font-size:24px; font-weight:600; }
-  .price-card .duration{ color:var(--taupe); font-size:13.5px; margin-top:4px; }
-  .price-card .amount{ font-family:'Cormorant Garamond',serif; font-size:44px; font-weight:700; color:var(--maroon); margin:20px 0 4px; }
-  .price-card .amount span{ font-family:'Work Sans',sans-serif; font-size:13px; font-weight:500; color:var(--taupe); }
-  .feature-list{ list-style:none; margin:26px 0; text-align:left; }
-  .feature-list li{ display:flex; align-items:flex-start; gap:12px; font-size:13.5px; padding:9px 0; line-height:1.4; }
-  .icon-wrap{ flex-shrink:0; width:22px; height:22px; border-radius:50%; background:rgba(46,125,50,0.12); display:flex; align-items:center; justify-content:center; margin-top:-1px; }
-  .icon{ width:12px; height:12px; color:#2E7D32; }
-  .plan-cta{ display:block; text-align:center; background:var(--maroon); color:var(--white); padding:15px; border-radius:26px; font-size:13.5px; font-weight:700; margin-top:10px; }
-
-  footer{ background:var(--white); color:var(--ink); padding:64px 6vw 30px; border-top:1px solid var(--line); text-align:center; }
-  footer .logo{ justify-content:center; margin-bottom:10px; }
-  .foot-bottom{ margin-top:20px; font-size:12px; color:var(--taupe); }
-  footer{ background:var(--white); color:var(--ink); padding:64px 6vw 30px; border-top:1px solid var(--line); text-align:left; }
-  .foot-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; padding-bottom:44px; }
-  footer h4{ font-size:12.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--teal); margin-bottom:16px; }
-  footer .logo{ color:var(--ink); margin-bottom:12px; justify-content:flex-start; }
-  footer p.tag{ font-size:14px; color:var(--taupe); max-width:280px; line-height:1.6; }
-  footer ul{ list-style:none; padding:0; margin:0; }
-  footer ul li{ margin-bottom:9px; font-size:13.5px; }
-  footer ul li a{ color:var(--taupe); transition:color .2s ease; }
-  footer ul li a:hover{ color:var(--maroon); }
-  .foot-bottom{ display:flex; justify-content:space-between; padding-top:22px; font-size:12px; color:var(--taupe); flex-wrap:wrap; gap:8px; border-top:1px solid var(--line); }
-  @media (max-width:760px){ .foot-grid{ grid-template-columns:1fr 1fr; } }
-
-  .nav-dropdown{ position:relative; }
-  .nav-dropdown > span{ cursor:pointer; opacity:0.75; }
-  .nav-dropdown:hover > span{ opacity:1; color:var(--teal); }
-  .nav-dropdown-menu{ position:absolute; top:28px; left:50%; transform:translateX(-50%) translateY(6px); background:var(--white); border:1px solid var(--line); border-radius:10px; padding:10px; min-width:200px; box-shadow:0 12px 30px rgba(45,50,44,0.14); opacity:0; visibility:hidden; transition:opacity .2s ease, transform .2s ease; z-index:60; }
-  .nav-dropdown:hover .nav-dropdown-menu{ opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
-  .nav-dropdown-menu a{ display:block; padding:9px 12px; border-radius:6px; font-size:13px; opacity:0.85; }
-  .nav-dropdown-menu a:hover{ background:var(--cream); opacity:1; }
+  @media (max-width:480px){
+    .logo{ font-size:16px; gap:8px; }
+    .logo img{ height:36px !important; width:36px !important; }
+    .nav-cta{ padding:8px 14px !important; font-size:12px !important; }
+  }
 
   .nav-hamburger{ display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:8px; z-index:70; }
   .nav-hamburger span{ width:24px; height:2px; background:var(--ink); border-radius:2px; transition:transform .25s ease, opacity .25s ease; }
@@ -111,6 +50,70 @@
     .nav-cta{ display:none; }
     .nav-links .nav-cta-mobile{ display:block; width:100%; text-align:center; margin-top:20px; background:var(--maroon); color:var(--white); padding:14px; border-radius:26px; font-weight:700; }
   }
+
+  .nav-dropdown{ position:relative; }
+  .nav-dropdown > span{ cursor:pointer; opacity:0.75; }
+  .nav-dropdown:hover > span{ opacity:1; color:var(--teal); }
+  .nav-dropdown-menu{ position:absolute; top:28px; left:50%; transform:translateX(-50%) translateY(6px); background:var(--white); border:1px solid var(--line); border-radius:10px; padding:10px; min-width:200px; box-shadow:0 12px 30px rgba(45,50,44,0.14); opacity:0; visibility:hidden; transition:opacity .2s ease, transform .2s ease; z-index:60; }
+  .nav-dropdown:hover .nav-dropdown-menu{ opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
+  .nav-dropdown-menu a{ display:block; padding:9px 12px; border-radius:6px; font-size:13px; opacity:0.85; }
+  .nav-dropdown-menu a:hover{ background:var(--cream); opacity:1; }
+
+  .page-hero{ background:var(--cream); text-align:center; padding:80px 8vw 60px; }
+  .page-hero h1{ font-size:clamp(34px,4.6vw,54px); font-weight:600; line-height:1.1; }
+  .page-hero h1 em{ font-style:italic; color:var(--maroon); }
+  .page-hero p{ margin-top:16px; color:var(--taupe); max-width:600px; margin-left:auto; margin-right:auto; font-size:16px; line-height:1.65; }
+  .hero-ctas{ margin-top:30px; display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+  .btn-solid{ background:var(--maroon); color:var(--white); padding:15px 30px; border-radius:28px; font-weight:600; font-size:14px; display:inline-block; transition:transform .25s ease, box-shadow .25s ease; }
+  .btn-outline{ border:1.5px solid var(--teal); color:var(--teal); padding:14px 30px; border-radius:28px; font-weight:600; font-size:14px; display:inline-block; transition:transform .25s ease; }
+  .btn-solid:hover{ transform:translateY(-3px); box-shadow:0 10px 24px rgba(123,2,55,0.25); }
+  .btn-outline:hover{ transform:translateY(-3px); }
+
+  .philosophy-section{ display:grid; grid-template-columns:0.85fr 1.15fr; gap:60px; align-items:center; max-width:1150px; margin:0 auto; }
+  .philosophy-photo{ border-radius:16px; overflow:hidden; aspect-ratio:3/4; }
+  .philosophy-photo img{ width:100%; height:100%; object-fit:cover; }
+  .philosophy-text h2{ font-size:clamp(28px,3.4vw,38px); font-weight:600; margin-top:10px; line-height:1.15; }
+  .philosophy-text p{ margin-top:18px; color:var(--taupe); font-size:15.5px; line-height:1.75; }
+  .philosophy-points{ margin-top:26px; display:flex; flex-direction:column; gap:14px; }
+  .philosophy-point{ display:flex; gap:12px; align-items:flex-start; font-size:14.5px; }
+  .philosophy-point .dot{ flex-shrink:0; width:8px; height:8px; border-radius:50%; background:var(--coral); margin-top:7px; }
+  @media (max-width:860px){ .philosophy-section{ grid-template-columns:1fr; gap:32px; } .philosophy-photo{ aspect-ratio:4/3; max-width:420px; margin:0 auto; } }
+
+  section{ padding:90px 6vw; }
+  .section-head{ max-width:660px; margin:0 auto 48px; text-align:center; }
+  .section-head h2{ font-size:clamp(28px,3.4vw,38px); font-weight:600; margin-top:10px; }
+  .section-head p{ margin-top:12px; color:var(--taupe); font-size:15.5px; line-height:1.65; }
+
+  .reveal{ opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in-view{ opacity:1; transform:translateY(0); }
+
+  .flip-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:26px; max-width:1150px; margin:0 auto; }
+  .flip-card{ perspective:1200px; aspect-ratio:2/3; cursor:pointer; }
+  .flip-inner{ position:relative; width:100%; height:100%; transition:transform .6s cubic-bezier(.4,.2,.2,1); transform-style:preserve-3d; }
+  .flip-card.flipped .flip-inner{ transform:rotateY(180deg); }
+  .flip-front, .flip-back{ position:absolute; inset:0; backface-visibility:hidden; border-radius:14px; overflow:hidden; border:1px solid var(--line); }
+  .flip-front{ background:var(--cream); }
+  .flip-front img{ width:100%; height:100%; object-fit:cover; }
+  .flip-front .flip-tag{ position:absolute; top:12px; left:12px; background:var(--maroon); color:var(--white); font-size:11px; font-weight:700; letter-spacing:0.03em; padding:6px 12px; border-radius:16px; }
+  .flip-front .flip-hint{ position:absolute; bottom:12px; right:12px; background:rgba(255,255,255,0.9); color:var(--ink); font-size:10.5px; font-weight:600; padding:5px 10px; border-radius:12px; }
+  .flip-back{ background:var(--teal); color:var(--white); transform:rotateY(180deg); padding:26px 22px; display:flex; flex-direction:column; }
+  .flip-back .flip-back-label{ font-size:11px; letter-spacing:0.1em; text-transform:uppercase; font-weight:700; color:var(--mustard); }
+  .flip-back h4{ font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:600; margin-top:6px; }
+  .flip-stats{ display:flex; gap:14px; margin-top:16px; }
+  .flip-stat{ text-align:center; }
+  .flip-stat .n{ font-family:'Cormorant Garamond',serif; font-size:19px; font-weight:700; color:var(--mustard); }
+  .flip-stat .l{ font-size:9.5px; opacity:0.8; text-transform:uppercase; letter-spacing:0.03em; }
+  .flip-back p{ font-size:12.5px; line-height:1.6; opacity:0.92; margin-top:16px; flex-grow:1; }
+  .flip-back .flip-close-hint{ font-size:10.5px; opacity:0.7; text-align:center; }
+  @media (max-width:900px){ .flip-grid{ grid-template-columns:repeat(2,1fr); gap:18px; } }
+
+  .cta-band{ text-align:center; background:var(--cream); }
+  .cta-band h2{ font-size:clamp(28px,3.6vw,42px); font-weight:600; max-width:600px; margin:0 auto 16px; }
+  .cta-band p{ color:var(--taupe); max-width:480px; margin:0 auto 26px; font-size:15px; }
+
+  footer{ background:var(--white); color:var(--ink); padding:64px 6vw 30px; border-top:1px solid var(--line); text-align:center; }
+  footer .logo{ justify-content:center; margin-bottom:10px; }
+  .foot-bottom{ margin-top:20px; font-size:12px; color:var(--taupe); }
 </style>
 </head>
 <body>
@@ -126,11 +129,11 @@
       <div class="nav-dropdown-menu">
         <a href="individual-coaching.html">Individual Coaching</a>
         <a href="buddy-program.html">Buddy Program</a>
-        <a href="pcos-coaching.html" class="active">PCOS Coaching</a>
+        <a href="pcos-coaching.html">PCOS Coaching</a>
         <a href="rewire-challenge.html">Rewire Challenge</a>
       </div>
     </div>
-    <a href="nutrition.html">Nutrition</a>
+    <a href="nutrition.html" class="active">Nutrition</a>
     <a href="blog.html">Blog</a>
     <a href="https://wa.me/919036147675?text=Hi!%20I%27d%20like%20to%20know%20more." target="_blank" rel="noopener">Contact</a>
     <a href="https://wa.me/919036147675?text=Hi!%20I%27d%20like%20to%20book%20a%20free%20consultation." class="nav-cta-mobile" target="_blank" rel="noopener">Book a Call</a>
@@ -140,166 +143,152 @@
 </nav>
 
 <section class="page-hero">
-  <span class="eyebrow">Hormone &amp; Women's Health</span>
-  <h1>PCOS, Postpartum &amp; Fertility Coaching</h1>
-  <p>A focused coaching program for women navigating PCOS, postpartum recovery, or fertility-related lifestyle changes — built around your cycle, your body, and what you're actually going through.</p>
-    <div class="hero-stat-strip">
-    <div class="hero-stat"><div class="n">4</div><div class="l">Month Program</div></div>
-    <div class="hero-stat"><div class="n">Hormone</div><div class="l">&amp; Gut Focus</div></div>
-    <div class="hero-stat"><div class="n">1-on-1</div><div class="l">Goal Mapping</div></div>
-    <div class="hero-stat highlight"><div class="n">4.9★</div><div class="l">Client Rating</div></div>
+  <span class="eyebrow">Nutrition</span>
+  <h1>Food is <em>fuel</em>,<br>not a punishment</h1>
+  <p>Training gets you halfway there — what's on your plate does the rest. Here's a real look at how clients eat while working with me: no crash diets, no extreme restriction, just consistent, sustainable meals built around real life.</p>
+  <div class="hero-ctas">
+    <a href="https://wa.me/919036147675?text=Hi!%20I%27d%20like%20to%20know%20more%20about%20nutrition%20coaching." class="btn-solid" target="_blank" rel="noopener">Get a Nutrition Plan</a>
+    <a href="#gallery" class="btn-outline">See What Clients Eat</a>
   </div>
 </section>
 
-<section>
-  <div class="section-head">
-    <span class="eyebrow">What We Help With</span>
-    <h2>Support for what you're actually dealing with</h2>
-  </div>
-  <div class="help-grid">
-    <div class="help-tile">
-      <div class="help-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-      </div>
-      <h4>Irregular Cycles</h4>
-      <p>Lifestyle &amp; nutrition support for cycle regularity</p>
+<section class="reveal">
+  <div class="philosophy-section">
+    <div class="philosophy-photo">
+      <img src="images/philosophy-photo.jpg" alt="Client enjoying a meal out, no food guilt">
     </div>
-    <div class="help-tile">
-      <div class="help-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8 6 5 10 5 14a7 7 0 0014 0c0-4-3-8-7-12z"/></svg>
+    <div class="philosophy-text">
+      <span class="eyebrow">My Approach</span>
+      <h2>No crash diets. No foods off-limits.</h2>
+      <p>If a nutrition plan can't survive a burger night out with friends, it's not a plan you can live with — and it definitely won't last. My clients eat real food, including the stuff you actually enjoy, because sustainable results come from consistency, not restriction.</p>
+      <div class="philosophy-points">
+        <div class="philosophy-point"><span class="dot"></span> Every plan is built around your actual life, not a generic template</div>
+        <div class="philosophy-point"><span class="dot"></span> Nothing is "off-limits" — we build room for the foods you love</div>
+        <div class="philosophy-point"><span class="dot"></span> Progress is measured in habits and energy, not just the scale</div>
       </div>
-      <h4>Insulin Resistance</h4>
-      <p>Nutrition strategies to support insulin sensitivity</p>
     </div>
-    <div class="help-tile">
-      <div class="help-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h16M4 12a8 8 0 0116 0M4 12a8 8 0 008 8"/></svg>
-      </div>
-      <h4>Weight Management</h4>
-      <p>Sustainable fat loss without extreme restriction</p>
-    </div>
-    <div class="help-tile">
-      <div class="help-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-8-4.5-8-11a5 5 0 0110-1 5 5 0 0110 1c0 6.5-8 11-8 11z"/></svg>
-      </div>
-      <h4>Hair &amp; Skin Changes</h4>
-      <p>Hormone-supportive nutrition to ease symptoms</p>
-    </div>
-    <div class="help-tile">
-      <div class="help-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg>
-      </div>
-      <h4>Low Energy &amp; Fatigue</h4>
-      <p>Nutrition &amp; habit coaching to rebuild energy</p>
-    </div>
-    <div class="help-tile">
-      <div class="help-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M12 6v6l4 2"/></svg>
-      </div>
-      <h4>Postpartum Recovery</h4>
-      <p>Gentle, phased programming after childbirth</p>
-    </div>
-    <div class="help-tile">
-      <div class="help-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 00-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z"/></svg>
-      </div>
-      <h4>Fertility-Supportive Habits</h4>
-      <p>Lifestyle coaching alongside your fertility journey</p>
-    </div>
-    <div class="help-tile">
-      <div class="help-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
-      </div>
-      <h4>Habit &amp; Stress Coaching</h4>
-      <p>Building routines that actually stick, long-term</p>
-    </div>
-  </div>
-
-  <div class="disclaimer">
-    <b>A note on what this program is:</b> this is lifestyle and nutrition coaching designed to support you alongside your medical care — it is not a substitute for diagnosis or treatment from your doctor or gynaecologist. Please continue working with your physician; we'll work alongside them, not in place of them.
   </div>
 </section>
 
-<section style="padding-top:20px;">
+<section class="reveal" id="gallery">
   <div class="section-head">
-    <span class="eyebrow">Credentials</span>
-    <h2>Trained &amp; Certified</h2>
+    <span class="eyebrow">What My Clients Eat</span>
+    <h2>Real Days, Real Plates</h2>
+    <p>Tap a card to flip it and see the full breakdown — calories, protein, water, and why it's built the way it is.</p>
   </div>
-  <div class="badges-row">
-    <span>ACE CERTIFIED</span>
-    <span>NASM · CERTIFIED CNC</span>
-    <span>INFS</span>
-    <span>PREHAB</span>
+  <div class="flip-grid">
+
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <img src="images/wieiad-1.jpg" alt="Client meal plan example 1">
+          <span class="flip-tag">Vegetarian</span>
+          <span class="flip-hint">Tap to flip</span>
+        </div>
+        <div class="flip-back">
+          <span class="flip-back-label">Coach's Notes</span>
+          <h4>Vegetarian, Balanced Plan</h4>
+          <div class="flip-stats">
+            <div class="flip-stat"><div class="n">1700</div><div class="l">kcal</div></div>
+            <div class="flip-stat"><div class="n">90g</div><div class="l">protein</div></div>
+            <div class="flip-stat"><div class="n">2.5L</div><div class="l">water</div></div>
+          </div>
+          <p>Fully vegetarian, built around paneer, legumes, and dal for protein — no meat, no eggs, and no refined sugar. Smaller, frequent meals keep energy steady through the day.</p>
+          <div class="flip-close-hint">Tap to flip back</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <img src="images/wieiad-2.jpg" alt="Client meal plan example 2">
+          <span class="flip-tag">Diabetes</span>
+          <span class="flip-hint">Tap to flip</span>
+        </div>
+        <div class="flip-back">
+          <span class="flip-back-label">Coach's Notes</span>
+          <h4>Diabetes-Friendly Plan</h4>
+          <div class="flip-stats">
+            <div class="flip-stat"><div class="n">1650</div><div class="l">kcal</div></div>
+            <div class="flip-stat"><div class="n">100g</div><div class="l">protein</div></div>
+            <div class="flip-stat"><div class="n">2.5L</div><div class="l">water</div></div>
+          </div>
+          <p>Balanced meals spaced through the day to keep blood sugar steady — egg-forward breakfast, high-fibre veg, and lean grilled protein at dinner, with no refined sugar anywhere in the plan.</p>
+          <div class="flip-close-hint">Tap to flip back</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <img src="images/wieiad-3.jpg" alt="Client meal plan example 3">
+          <span class="flip-tag">Balanced</span>
+          <span class="flip-hint">Tap to flip</span>
+        </div>
+        <div class="flip-back">
+          <span class="flip-back-label">Coach's Notes</span>
+          <h4>Everyday Sustainable Eating</h4>
+          <div class="flip-stats">
+            <div class="flip-stat"><div class="n">1800</div><div class="l">kcal</div></div>
+            <div class="flip-stat"><div class="n">100g</div><div class="l">protein</div></div>
+            <div class="flip-stat"><div class="n">2.5L</div><div class="l">water</div></div>
+          </div>
+          <p>Simple, home-cook-friendly meals — oatmeal, stir-fried noodles, fruit for snacks. Nothing fancy or restrictive, which is exactly why this client has stuck with it long-term.</p>
+          <div class="flip-close-hint">Tap to flip back</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <img src="images/wieiad-4.jpg" alt="Client meal plan example 4">
+          <span class="flip-tag">Eggetarian</span>
+          <span class="flip-hint">Tap to flip</span>
+        </div>
+        <div class="flip-back">
+          <span class="flip-back-label">Coach's Notes</span>
+          <h4>Eggetarian, High-Protein Plan</h4>
+          <div class="flip-stats">
+            <div class="flip-stat"><div class="n">1750</div><div class="l">kcal</div></div>
+            <div class="flip-stat"><div class="n">86g</div><div class="l">protein</div></div>
+            <div class="flip-stat"><div class="n">2.5L</div><div class="l">water</div></div>
+          </div>
+          <p>No meat, but never short on protein — whey, eggs, soya, and dates spread across six small meals for a client with a busy, unpredictable schedule who still needs to hit their numbers.</p>
+          <div class="flip-close-hint">Tap to flip back</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<section style="background:var(--cream);">
-  <div class="section-head">
-    <span class="eyebrow">The Program</span>
-    <h2>One Focused Program</h2>
-    <p>No tiers to choose between — just one complete program built for hormone and cycle-related coaching.</p>
-  </div>
-  <div class="price-wrap">
-    <div class="price-card">
-      <h3>PCOS, Postpartum &amp; Fertility Program</h3>
-      <div class="duration">4 Month Program</div>
-      <div class="amount">₹35,999 <span>total</span></div>
-      <ul class="feature-list">
-        <li><span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span> Personalised nutrition plan for hormone &amp; insulin support</li>
-        <li><span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span> Cycle tracking &amp; symptom pattern guidance</li>
-        <li><span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span> Postpartum-specific recovery programming (where applicable)</li>
-        <li><span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span> Fertility-supportive lifestyle coaching</li>
-        <li><span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span> Weekly check-ins</li>
-        <li><span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span> Habit &amp; stress-management coaching</li>
-        <li><span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span> Direct WhatsApp support</li>
-        <li><span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span> 2 dedicated coaching calls across the program</li>
-      </ul>
-      <a href="signup.html?plan=PCOS%20Coaching&duration=4%20Months&price=35999" class="plan-cta">Book Your Consultation</a>
-    </div>
-  </div>
+<section class="cta-band reveal">
+  <span class="eyebrow">Ready When You Are</span>
+  <h2>Let's build your plate around your life.</h2>
+  <p>No crash diets, no guesswork — just a nutrition plan that actually fits how you eat.</p>
+  <a href="https://wa.me/919036147675?text=Hi!%20I%27d%20like%20to%20know%20more%20about%20nutrition%20coaching." class="btn-solid" target="_blank" rel="noopener">Book a Free Consultation</a>
 </section>
 
 <footer>
-  <div class="foot-grid">
-    <div>
-      <a href="index.html" class="logo" style="text-decoration:none; color:inherit;"><img src="logo.png" alt="Strong With Sherni logo">Strong With Sherni</a>
-      <p class="tag">Holistic health coaching for women who want strength, not shortcuts.</p>
-    </div>
-    <div>
-      <h4>Explore</h4>
-      <ul>
-        <li><a href="index.html#services">Services</a></li>
-        <li><a href="index.html#about">About</a></li>
-        <li><a href="nutrition.html">Nutrition</a></li>
-        <li><a href="blog.html">Blog</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Programs</h4>
-      <ul>
-        <li><a href="individual-coaching.html">Individual Coaching</a></li>
-        <li><a href="buddy-program.html">Buddy Coaching</a></li>
-        <li><a href="rewire-challenge.html">Rewire Challenge</a></li>
-        <li><a href="pcos-coaching.html">PCOS Coaching</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Connect</h4>
-      <ul>
-        <li><a href="https://wa.me/919036147675" target="_blank" rel="noopener">WhatsApp</a></li>
-        <li><a href="https://instagram.com/strongwithshernii" target="_blank" rel="noopener">Instagram</a></li>
-        <li><a href="https://wa.me/919036147675?text=Hi!%20I%27d%20like%20to%20know%20more." target="_blank" rel="noopener">Contact</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="foot-bottom">
-    <span>© 2026 Strong With Sherni. All rights reserved.</span>
-    <span>Bengaluru, India</span>
-  </div>
+  <a href="index.html" class="logo" style="text-decoration:none; color:inherit; justify-content:center;"><img src="logo.png" alt="Strong With Sherni logo">Strong With Sherni</a>
+  <div class="foot-bottom">© 2026 Strong With Sherni. All rights reserved. · Bengaluru, India</div>
 </footer>
 
-
 <script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => revealObserver.observe(el));
+
   function toggleMobileNav(){
     document.querySelector('.nav-links').classList.toggle('mobile-open');
     document.querySelector('.nav-hamburger').classList.toggle('open');
@@ -315,5 +304,6 @@
     }
   });
 </script>
+
 </body>
 </html>
