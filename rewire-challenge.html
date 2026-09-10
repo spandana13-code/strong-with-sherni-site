@@ -112,12 +112,31 @@
   .nav-dropdown:hover .nav-dropdown-menu{ opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
   .nav-dropdown-menu a{ display:block; padding:9px 12px; border-radius:6px; font-size:13px; opacity:0.85; }
   .nav-dropdown-menu a:hover{ background:var(--cream); opacity:1; }
+
+  .nav-hamburger{ display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:8px; z-index:70; }
+  .nav-hamburger span{ width:24px; height:2px; background:var(--ink); border-radius:2px; transition:transform .25s ease, opacity .25s ease; }
+  .nav-hamburger.open span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2){ opacity:0; }
+  .nav-hamburger.open span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+  @media (max-width:860px){
+    .nav-hamburger{ display:flex; }
+    .nav-links{ display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:var(--white); flex-direction:column; align-items:flex-start; gap:0; padding:90px 8vw 40px; z-index:65; overflow-y:auto; }
+    .nav-links.mobile-open{ display:flex; }
+    .nav-links a{ width:100%; padding:16px 0; border-bottom:1px solid var(--line); font-size:16px; opacity:1; }
+    .nav-dropdown{ width:100%; }
+    .nav-dropdown > span{ display:flex; justify-content:space-between; align-items:center; width:100%; padding:16px 0; border-bottom:1px solid var(--line); font-size:16px; opacity:1; }
+    .nav-dropdown-menu{ position:static; opacity:1; visibility:visible; transform:none; box-shadow:none; border:none; padding:0 0 0 14px; display:none; min-width:0; }
+    .nav-dropdown.mobile-expanded .nav-dropdown-menu{ display:block; }
+    .nav-dropdown-menu a{ border-bottom:1px solid var(--line); }
+    .nav-cta{ display:none; }
+    .nav-links .nav-cta-mobile{ display:block; width:100%; text-align:center; margin-top:20px; background:var(--maroon); color:var(--white); padding:14px; border-radius:26px; font-weight:700; }
+  }
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="logo"><img src="logo.png" alt="Strong With Sherni logo">Strong With Sherni</div>
+  <a href="index.html" class="logo" style="text-decoration:none; color:inherit;"><img src="logo.png" alt="Strong With Sherni logo">Strong With Sherni</a>
   <div class="nav-links">
     <a href="index.html#services">Services</a>
     <a href="index.html#about">About</a>
@@ -134,7 +153,9 @@
     <a href="nutrition.html">Nutrition</a>
     <a href="blog.html">Blog</a>
     <a href="https://wa.me/919036147675?text=Hi!%20I%27d%20like%20to%20know%20more." target="_blank" rel="noopener">Contact</a>
+    <a href="https://wa.me/919036147675?text=Hi!%20I%27d%20like%20to%20book%20a%20free%20consultation." class="nav-cta-mobile" target="_blank" rel="noopener">Book a Call</a>
   </div>
+  <button class="nav-hamburger" onclick="toggleMobileNav()" aria-label="Menu"><span></span><span></span><span></span></button>
   <a href="https://wa.me/919036147675?text=Hi!%20I%27d%20like%20to%20book%20a%20free%20consultation." class="nav-cta" target="_blank" rel="noopener">Book a Call</a>
 </nav>
 
@@ -260,7 +281,7 @@
 <footer>
   <div class="foot-grid">
     <div>
-      <div class="logo"><img src="logo.png" alt="Strong With Sherni logo">Strong With Sherni</div>
+      <a href="index.html" class="logo" style="text-decoration:none; color:inherit;"><img src="logo.png" alt="Strong With Sherni logo">Strong With Sherni</a>
       <p class="tag">Holistic health coaching for women who want strength, not shortcuts.</p>
     </div>
     <div>
@@ -296,5 +317,22 @@
   </div>
 </footer>
 
+
+<script>
+  function toggleMobileNav(){
+    document.querySelector('.nav-links').classList.toggle('mobile-open');
+    document.querySelector('.nav-hamburger').classList.toggle('open');
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    const dropdownToggle = document.querySelector('.nav-dropdown > span');
+    if(dropdownToggle){
+      dropdownToggle.addEventListener('click', function(){
+        if(window.innerWidth <= 860){
+          this.parentElement.classList.toggle('mobile-expanded');
+        }
+      });
+    }
+  });
+</script>
 </body>
 </html>
