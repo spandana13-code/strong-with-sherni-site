@@ -171,8 +171,8 @@
       <div class="field"><label>Duration</label>
         <select id="f-duration"><option>3 months</option><option>4 months</option><option>6 months</option><option>12 months</option><option>1 hour</option></select>
       </div>
-      <div class="field"><label>Current phase</label>
-        <select id="f-phase"><option>Phase 1</option><option>Phase 2</option><option>Phase 3</option><option>Phase 4</option><option>Trial</option></select>
+      <div class="field"><label>Phase length (phases change automatically)</label>
+        <select id="f-phaseweeks"><option value="4">4 weeks per phase</option><option value="6">6 weeks per phase</option></select>
       </div>
       <div class="field"><label>Pause days</label><input id="f-pause" type="number" min="0" value="0"></div>
       <div class="field"><label>Extension days</label><input id="f-ext" type="number" min="0" value="0"></div>
@@ -217,6 +217,32 @@
     if(!c.join_date) return null;
     const d = new Date(c.join_date);
     d.setDate(d.getDate() + DURATIONS[c.duration] + Number(c.pause_days||0) + Number(c.extension_days||0) + Number(c.referral_days||0));
+    return d;
+  }
+  // ---- Automatic phases: Phase 1 -> 4, each lasts phase_weeks (4 default, 6 optional). Pause days push changes later. Stays on Phase 4. ----
+  function isTrial(c){ return c.phase==="Trial" || c.duration==="1 hour"; }
+  function phaseStart(c){
+    const d = new Date(c.join_date); d.setHours(0,0,0,0);
+    d.setDate(d.getDate() + Number(c.pause_days||0));
+    return d;
+  }
+  function phaseNum(c){
+    if(!c.join_date) return 1;
+    const len = (Number(c.phase_weeks)||4)*7;
+    const elapsed = Math.floor((new Date() - phaseStart(c))/86400000);
+    return Math.min(4, Math.max(1, Math.floor(elapsed/len)+1));
+  }
+  function effPhase(c){ return isTrial(c) ? "Trial" : "Phase "+phaseNum(c); }
+  function nextPhaseDate(c){
+    if(isTrial(c) || !c.join_date) return null;
+    const n = phaseNum(c); if(n>=4) return null;
+    const d = phaseStart(c); d.setDate(d.getDate() + n*(Number(c.phase_weeks)||4)*7);
+    return d;
+  }
+  function lastPhaseChangeDate(c){
+    if(isTrial(c) || !c.join_date) return null;
+    const n = phaseNum(c); if(n<=1) return null;
+    const d = phaseStart(c); d.setDate(d.getDate() + (n-1)*(Number(c.phase_weeks)||4)*7);
     return d;
   }
   function daysLeft(end){ if(!end) return null; return Math.ceil((end - new Date())/86400000); }
@@ -292,7 +318,7 @@
     const onboardPending = clients.filter(c=>!c.onboarding_done).length;
     const paid = clients.filter(c=>c.payment_status==="paid").length;
     const pending = clients.filter(c=>c.payment_status!=="paid").length;
-    const phaseCounts = ["Phase 1","Phase 2","Phase 3","Phase 4"].map(p=>clients.filter(c=>(c.phase||"Phase 1")===p).length);
+    const phaseCounts = ["Phase 1","Phase 2","Phase 3","Phase 4"].map(p=>clients.filter(c=>effPhase(c)===p).length);
 
     document.getElementById("tab-overview").innerHTML = `
       <p style="font-size:13px;font-weight:600;color:#374151;margin-bottom:10px;">Programme Status</p>
@@ -367,7 +393,7 @@
       const ms = c.name.toLowerCase().includes(search) || c.email.toLowerCase().includes(search);
       const g = statusGroup(c);
       const mf = statusF==="all" ? true : statusF==="active" ? g==="active" : statusF==="expiring" ? ["critical","warning","soon"].includes(g) : g==="expired";
-      const mp = phaseF==="all" ? true : c.phase===phaseF;
+      const mp = phaseF==="all" ? true : effPhase(c)===phaseF;
       return ms && mf && mp;
     });
 
@@ -422,7 +448,7 @@
                 </div>
                 <div class="badges">
                   ${needsAttention ? `<span class="badge" style="background:#FEE2E2;color:#B91C1C;">⚠ Needs Attention</span>` : ""}
-                  <span class="badge" style="background:#EDE9FE;color:#5B21B6;">${c.phase||"Phase 1"}</span>
+                  <span class="badge" style="background:#EDE9FE;color:#5B21B6;">${effPhase(c)}</span>
                   ${statusBadgeHtml(days)}
                   ${wa ? `<a href="${wa}" target="_blank" class="btn-wa">💬 WhatsApp</a>` : ""}
                   <span class="badge" style="background:${c.payment_status==='paid'?'#EAF3DE':'#FEF3C7'};color:${c.payment_status==='paid'?'#3B6D11':'#92400E'};">${c.payment_status==='paid'?'Paid':'Payment Pending'}</span>
@@ -453,7 +479,8 @@
               </div>
               <div style="margin-bottom:12px;">
                 <label style="font-size:12px;color:var(--taupe);margin-right:8px;">Phase:</label>
-                ${["Phase 1","Phase 2","Phase 3","Phase 4"].map(p=>`<button class="phase-btn ${c.phase===p?'active':''}" onclick="quickUpdate('${c.id}',{phase:'${p}'})">${p}</button>`).join("")}
+                <b>${effPhase(c)}</b> <span style="font-size:12px;color:var(--taupe);">(auto · ${Number(c.phase_weeks)||4}-week phases${nextPhaseDate(c)?" · next change "+fmt(nextPhaseDate(c)):""})</span>
+                <button class="phase-btn" style="margin-left:8px;" onclick="quickUpdate('${c.id}',{phase_weeks:${(Number(c.phase_weeks)||4)===4?6:4}})">Switch to ${(Number(c.phase_weeks)||4)===4?6:4} weeks</button>
               </div>
               ${c.notes ? `<p style="font-size:12px;color:var(--taupe);padding:8px 10px;background:#fff;border-radius:6px;">${c.notes}</p>` : ""}
             </div>
@@ -481,7 +508,16 @@
     const exp7 = clients.filter(c=>{const d=daysLeft(calcEnd(c));return d!==null&&d>=0&&d<=7;});
     const exp30 = clients.filter(c=>{const d=daysLeft(calcEnd(c));return d!==null&&d>7&&d<=30;});
 
+    const soonPhase = clients.filter(c=>{const n=nextPhaseDate(c); if(!n||statusGroup(c)==="expired") return false; const d=Math.ceil((n-new Date())/86400000); return d<=7;});
+    const justChanged = clients.filter(c=>{const l=lastPhaseChangeDate(c); if(!l||statusGroup(c)==="expired") return false; const d=Math.floor((new Date()-l)/86400000); return d>=0&&d<=7;});
+
     let html = "";
+    if(soonPhase.length || justChanged.length){
+      html += `<div class="reminder-box"><p class="reminder-title" style="color:#5B21B6;">🔄 Phase changes (${soonPhase.length+justChanged.length})</p>`;
+      justChanged.forEach(c=>{ html += `<div class="reminder-row"><span>${c.name}</span><span>Now <b>${effPhase(c)}</b> · changed ${fmt(lastPhaseChangeDate(c))}</span></div>`; });
+      soonPhase.forEach(c=>{ const n=nextPhaseDate(c); const d=Math.max(0,Math.ceil((n-new Date())/86400000)); html += `<div class="reminder-row"><span>${c.name}</span><span>${effPhase(c)} → Phase ${phaseNum(c)+1} in ${d}d · ${fmt(n)}</span></div>`; });
+      html += `</div>`;
+    }
     if(introPending.length){
       html += `<div class="reminder-box"><p class="reminder-title" style="color:#993556;">📞 Intro Call Pending (${introPending.length})</p>`;
       introPending.forEach(c=>{ html += `<div class="reminder-row"><span>${c.name}</span><button class="btn-primary" style="padding:4px 14px;font-size:12px;" onclick="quickUpdate('${c.id}',{intro_done:true})">Mark done</button></div>`; });
@@ -502,7 +538,7 @@
       exp30.forEach(c=>{ const d=daysLeft(calcEnd(c)); html += `<div class="reminder-row" style="color:#854F0B;"><span>${c.name}</span><span>${d}d left · ends ${fmt(calcEnd(c))}</span></div>`; });
       html += `</div>`;
     }
-    if(!introPending.length && !onboardPending.length && !exp7.length && !exp30.length){
+    if(!soonPhase.length && !justChanged.length && !introPending.length && !onboardPending.length && !exp7.length && !exp30.length){
       html = `<div style="text-align:center;padding:3rem 0;color:var(--taupe);">🎉 All clear! No pending reminders.</div>`;
     }
     document.getElementById("tab-reminders").innerHTML = html;
@@ -513,7 +549,7 @@
     document.getElementById("modal-title").textContent = "Add New Client";
     ["f-name","f-email","f-password","f-phone","f-join","f-payment","f-onboard-date","f-notes"].forEach(id=>document.getElementById(id).value="");
     document.getElementById("f-duration").value = "3 months";
-    document.getElementById("f-phase").value = "Phase 1";
+    document.getElementById("f-phaseweeks").value = "4";
     document.getElementById("f-pause").value = 0;
     document.getElementById("f-ext").value = 0;
     document.getElementById("f-ref").value = 0;
@@ -536,7 +572,7 @@
     document.getElementById("f-payment").value = c.payment_date||"";
     document.getElementById("f-onboard-date").value = c.onboarding_date||"";
     document.getElementById("f-duration").value = c.duration;
-    document.getElementById("f-phase").value = c.phase||"Phase 1";
+    document.getElementById("f-phaseweeks").value = String(c.phase_weeks||4);
     document.getElementById("f-pause").value = c.pause_days||0;
     document.getElementById("f-ext").value = c.extension_days||0;
     document.getElementById("f-ref").value = c.referral_days||0;
@@ -567,7 +603,7 @@
       payment_date: document.getElementById("f-payment").value || null,
       onboarding_date: document.getElementById("f-onboard-date").value || null,
       duration: document.getElementById("f-duration").value,
-      phase: document.getElementById("f-phase").value,
+      phase_weeks: Number(document.getElementById("f-phaseweeks").value)||4,
       pause_days: Number(document.getElementById("f-pause").value)||0,
       extension_days: Number(document.getElementById("f-ext").value)||0,
       referral_days: Number(document.getElementById("f-ref").value)||0,
@@ -577,6 +613,7 @@
       notes: document.getElementById("f-notes").value
     };
 
+    payload.phase = effPhase({...payload});
     let error;
     if(editingId){
       ({ error } = await sb.from("clients").update(payload).eq("id", editingId));
@@ -607,7 +644,7 @@
     const headers = ["Name","Email","Phone","Phase","Duration","Join Date","Payment Date","Onboarding Date","Pause Days","Extension Days","Referral Days","End Date","Days Remaining","Payment Status","Intro Call","Onboarding Call","Notes"];
     const rows = clients.map(c=>{
       const end = calcEnd(c); const days = daysLeft(end);
-      return [c.name,c.email,c.phone||"",c.phase||"",c.duration,fmt(c.join_date),fmt(c.payment_date),fmt(c.onboarding_date),c.pause_days||0,c.extension_days||0,c.referral_days||0,fmt(end),days!==null?Math.max(0,days):"",c.payment_status||"pending",c.intro_done?"Done":"Pending",c.onboarding_done?"Done":"Pending",c.notes||""];
+      return [c.name,c.email,c.phone||"",effPhase(c),c.duration,fmt(c.join_date),fmt(c.payment_date),fmt(c.onboarding_date),c.pause_days||0,c.extension_days||0,c.referral_days||0,fmt(end),days!==null?Math.max(0,days):"",c.payment_status||"pending",c.intro_done?"Done":"Pending",c.onboarding_done?"Done":"Pending",c.notes||""];
     });
     const csv = [headers,...rows].map(r=>r.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(",")).join("\n");
     const a = document.createElement("a");
