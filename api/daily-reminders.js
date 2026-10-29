@@ -10,13 +10,16 @@ function isTrial(c) { return c.phase === 'Trial' || c.duration === '1 hour'; }
 function phaseStart(c) { return new Date(startOfDay(c.join_date).getTime() + Number(c.pause_days || 0) * DAY); }
 function phaseInfo(c, now) {
   const len = (Number(c.phase_weeks) || 4) * 7;
-  const elapsed = Math.floor((now - phaseStart(c)) / DAY);
-  const n = Math.min(4, Math.max(1, Math.floor(elapsed / len) + 1));
-  const start = phaseStart(c).getTime();
+  const m = /Phase (\d)/.exec(c.phase_override || '');
+  const manual = !!(m && c.phase_override_date);
+  const n0 = manual ? Number(m[1]) : 1;
+  const start = manual ? startOfDay(c.phase_override_date).getTime() : phaseStart(c).getTime();
+  const elapsed = Math.max(0, Math.floor((now - start) / DAY));
+  const n = Math.min(4, n0 + Math.floor(elapsed / len));
   return {
     n,
-    next: n < 4 ? new Date(start + n * len * DAY) : null,
-    last: n > 1 ? new Date(start + (n - 1) * len * DAY) : null
+    next: n < 4 ? new Date(start + (n - n0 + 1) * len * DAY) : null,
+    last: n > n0 ? new Date(start + (n - n0) * len * DAY) : null
   };
 }
 function endDate(c) {
