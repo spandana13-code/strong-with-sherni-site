@@ -226,25 +226,38 @@
     d.setDate(d.getDate() + Number(c.pause_days||0));
     return d;
   }
+  // Manual override: when you set a phase by hand, the count restarts from that day (e.g. set Phase 3 today -> Phase 4 after the phase length).
+  function phaseBase(c){
+    const m = /Phase (\d)/.exec(c.phase_override||"");
+    if(m && c.phase_override_date){ const d = new Date(c.phase_override_date); d.setHours(0,0,0,0); return { n0:Number(m[1]), start:d, manual:true }; }
+    return { n0:1, start:phaseStart(c), manual:false };
+  }
+  function phaseLen(c){ return (Number(c.phase_weeks)||4)*7; }
   function phaseNum(c){
     if(!c.join_date) return 1;
-    const len = (Number(c.phase_weeks)||4)*7;
-    const elapsed = Math.floor((new Date() - phaseStart(c))/86400000);
-    return Math.min(4, Math.max(1, Math.floor(elapsed/len)+1));
+    const b = phaseBase(c);
+    const elapsed = Math.max(0, Math.floor((new Date() - b.start)/86400000));
+    return Math.min(4, b.n0 + Math.floor(elapsed/phaseLen(c)));
   }
   function effPhase(c){ return isTrial(c) ? "Trial" : "Phase "+phaseNum(c); }
   function nextPhaseDate(c){
     if(isTrial(c) || !c.join_date) return null;
     const n = phaseNum(c); if(n>=4) return null;
-    const d = phaseStart(c); d.setDate(d.getDate() + n*(Number(c.phase_weeks)||4)*7);
+    const b = phaseBase(c); const d = new Date(b.start); d.setDate(d.getDate() + (n-b.n0+1)*phaseLen(c));
     return d;
   }
   function lastPhaseChangeDate(c){
     if(isTrial(c) || !c.join_date) return null;
-    const n = phaseNum(c); if(n<=1) return null;
-    const d = phaseStart(c); d.setDate(d.getDate() + (n-1)*(Number(c.phase_weeks)||4)*7);
+    const n = phaseNum(c); const b = phaseBase(c);
+    if(n<=b.n0) return b.manual ? b.start : null;
+    const d = new Date(b.start); d.setDate(d.getDate() + (n-b.n0)*phaseLen(c));
     return d;
   }
+  function setPhaseManual(id, n){
+    const t = new Date(); const today = t.getFullYear()+"-"+String(t.getMonth()+1).padStart(2,"0")+"-"+String(t.getDate()).padStart(2,"0");
+    quickUpdate(id, { phase_override:"Phase "+n, phase_override_date:today, phase:"Phase "+n });
+  }
+  function clearPhaseManual(id){ quickUpdate(id, { phase_override:null, phase_override_date:null }); }
   function daysLeft(end){ if(!end) return null; return Math.ceil((end - new Date())/86400000); }
   function fmt(date){ if(!date) return "—"; return new Date(date).toLocaleDateString("en-IN",{day:"2-digit",month:"short",year:"numeric"}); }
   function statusGroup(c){
@@ -479,8 +492,9 @@
               </div>
               <div style="margin-bottom:12px;">
                 <label style="font-size:12px;color:var(--taupe);margin-right:8px;">Phase:</label>
-                <b>${effPhase(c)}</b> <span style="font-size:12px;color:var(--taupe);">(auto · ${Number(c.phase_weeks)||4}-week phases${nextPhaseDate(c)?" · next change "+fmt(nextPhaseDate(c)):""})</span>
-                <button class="phase-btn" style="margin-left:8px;" onclick="quickUpdate('${c.id}',{phase_weeks:${(Number(c.phase_weeks)||4)===4?6:4}})">Switch to ${(Number(c.phase_weeks)||4)===4?6:4} weeks</button>
+                ${["Phase 1","Phase 2","Phase 3","Phase 4"].map((p,i)=>`<button class="phase-btn ${effPhase(c)===p?'active':''}" onclick="setPhaseManual('${c.id}',${i+1})">${p}</button>`).join("")}
+                ${c.phase_override ? `<button class="phase-btn" onclick="clearPhaseManual('${c.id}')">↺ Back to auto</button>` : ""}
+                <p style="font-size:12px;color:var(--taupe);margin-top:6px;">${c.phase_override?"Set manually on "+fmt(c.phase_override_date)+" · ":"Auto · "}${Number(c.phase_weeks)||4}-week phases${nextPhaseDate(c)?" · next change "+fmt(nextPhaseDate(c)):""} · <a href="#" onclick="quickUpdate('${c.id}',{phase_weeks:${(Number(c.phase_weeks)||4)===4?6:4}});return false;">switch to ${(Number(c.phase_weeks)||4)===4?6:4}-week phases</a></p>
               </div>
               ${c.notes ? `<p style="font-size:12px;color:var(--taupe);padding:8px 10px;background:#fff;border-radius:6px;">${c.notes}</p>` : ""}
             </div>
@@ -613,7 +627,7 @@
       notes: document.getElementById("f-notes").value
     };
 
-    payload.phase = effPhase({...payload});
+    payload.phase = effPhase({...(clients.find(x=>x.id===editingId)||{}), ...payload});
     let error;
     if(editingId){
       ({ error } = await sb.from("clients").update(payload).eq("id", editingId));
